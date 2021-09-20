@@ -5,15 +5,18 @@ import App from './App'
 import reportWebVitals from './reportWebVitals'
 import { AppProvider } from './context/Uicontext'
 import { AuthProvider } from './context/AuthContext'
+import { AdminUiProvider } from './context/DashboardContext'
 import { FilterProvider } from './context/FilterContext'
 ReactDOM.render(
   <React.StrictMode>
     <AuthProvider>
-      <AppProvider>
+      <AdminUiProvider>
         <FilterProvider>
-          <App />
+          <AppProvider>
+            <App />
+          </AppProvider>
         </FilterProvider>
-      </AppProvider>
+      </AdminUiProvider>
     </AuthProvider>
   </React.StrictMode>,
   document.getElementById('root')

@@ -10,10 +10,15 @@ import {
   UpdatePassword,
   Profile,
   UserDashboard,
+  CourseDashboard,
+  UserEdit,
+  CourseEdit,
+  Tcourselist,
 } from './pages'
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom'
 import { Navbar, Header, Footer, Sidebar, Submenu } from './component/reuse'
 import { ToastContainer, toast } from 'react-toastify'
+
 import 'react-toastify/dist/ReactToastify.css'
 
 const useStyles = makeStyles((theme) => ({
@@ -59,11 +64,23 @@ const App = () => {
             <Route exact path='/'>
               <Home />
             </Route>
-            <Route exact path='/Dashboard'>
+            <Route exact path='/dashboard'>
               <UserDashboard />
+            </Route>
+            <Route exact path='/useredit/:id'>
+              <UserEdit />
+            </Route>
+            <Route exact path='/courseedit/:id'>
+              <CourseEdit />
+            </Route>
+            <Route exact path='/coursedashboard'>
+              <CourseDashboard />
             </Route>
             <Route exact path='/course'>
               <Course />
+            </Route>
+            <Route exact path='/tcourselist'>
+              <Tcourselist />
             </Route>
             <Route exact path='/updatepassword/:token'>
               <UpdatePassword />

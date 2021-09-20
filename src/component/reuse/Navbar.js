@@ -4,10 +4,10 @@ import MenuIcon from '@material-ui/icons/Menu'
 import { useUiContext } from './../../context/Uicontext'
 import Logo from '../../img/logo.png'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
-import { useAuthContext } from '../../context/AuthContext'
 import { Link, useLocation } from 'react-router-dom'
 import ExpandIcon from '@material-ui/icons/ExpandMore'
 import { Button, Menu, MenuItem } from '@material-ui/core'
+import { useAuthContext } from '../../context/AuthContext'
 const Navbar = () => {
   const { openSidebar, openSubmenu, closeSubmenu } = useUiContext()
   const matches = useMediaQuery('(max-width:800px)')
@@ -18,7 +18,6 @@ const Navbar = () => {
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget)
   }
-  console.log(userdata)
   const handleClose = () => {
     setAnchorEl(null)
   }
@@ -39,6 +38,9 @@ const Navbar = () => {
     }
   }
   if (location.pathname.match('/account')) {
+    return null
+  }
+  if (userdata.isAdmin) {
     return null
   }
   return (

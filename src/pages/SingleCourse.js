@@ -17,7 +17,6 @@ const CoursePage = () => {
       <Helmet>
         <title>Zilom | SingleCourse</title>
       </Helmet>
-      <Hero />
       <SingleCourse />
     </>
   )

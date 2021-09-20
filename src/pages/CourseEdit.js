@@ -1,9 +1,10 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Helmet } from 'react-helmet'
-import UserDashboard from '../Dashboard/Userlist'
-import Hero from './Hero'
 import Sidebar from '../Dashboard/Sidebar'
+import CourseEdit from '../Dashboard/Course/Editcourse'
+import { useAuthContext } from '../context/AuthContext'
+
 const useStyles = makeStyles((theme) => ({
   main: {
     width: '100%',
@@ -21,16 +22,17 @@ const useStyles = makeStyles((theme) => ({
 
 const CoursePage = () => {
   const classes = useStyles()
+  const { userdata } = useAuthContext()
+
   return (
     <>
       <Helmet>
-        <title>Zilom | Dashboard</title>
+        <title>Zilom | CourseEdit</title>
       </Helmet>
-      <Hero />
       <section className={classes.main}>
-        <Sidebar />
+        {userdata.isAdmin ? <Sidebar /> : <div />}
         <div className={classes.main2}>
-          <UserDashboard />
+          <CourseEdit />
         </div>
       </section>
     </>

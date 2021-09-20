@@ -61,6 +61,7 @@ export default function SignIn({ changeExpand, changeExpandForget }) {
   const [passworderror, setpassworderror] = useState(false)
   const [redirect, setRedirect] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
+  const [adminRedirect, setAdminRedirect] = useState(false)
   const { loginData } = useAuthContext()
 
   const handleClickShowPassword = () => {
@@ -94,9 +95,15 @@ export default function SignIn({ changeExpand, changeExpandForget }) {
       toast.success("You're logged in . ")
       setEmailerror(false)
       setpassworderror(false)
-      setTimeout(() => {
-        setRedirect(true)
-      }, 800)
+      if (!response.data.isAdmin) {
+        setTimeout(() => {
+          setRedirect(true)
+        }, 800)
+      } else {
+        setTimeout(() => {
+          setAdminRedirect(true)
+        }, 800)
+      }
     }
   }
 
@@ -109,6 +116,10 @@ export default function SignIn({ changeExpand, changeExpandForget }) {
 
   if (redirect) {
     return <Redirect to='/' />
+  }
+
+  if (adminRedirect) {
+    return <Redirect to='/dashboard' />
   }
 
   return (

@@ -1,11 +1,13 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { IconButton, Divider } from '@material-ui/core'
+import { IconButton, Divider, Button } from '@material-ui/core'
 import Logo from '../../img/logo.png'
 import Phone from '../../img/phone-call.png'
 import Emailimg from '../../img/message.png'
 import { social } from '../../DummyData'
 import { useLocation, Link } from 'react-router-dom'
+import { useAuthContext } from '../../context/AuthContext'
+
 const useStyles = makeStyles((theme) => ({
   main: {
     height: '100px',
@@ -34,11 +36,18 @@ const useStyles = makeStyles((theme) => ({
       alignSelf: 'center',
     },
   },
-  btn: {},
+  logout: {
+    gridColumn: '2/span 5',
+    display: 'grid',
+    justifyContent: 'end',
+    alignItems: 'center',
+  },
 }))
 const Header = () => {
   const classes = useStyles()
   const location = useLocation()
+  const { userdata, logout } = useAuthContext()
+
   return (
     <>
       <header className={classes.main}>
@@ -47,7 +56,7 @@ const Header = () => {
             <img src={Logo} alt='logo' />
           </Link>
         </div>
-        {!location.pathname.match('/account') && (
+        {!location.pathname.match('/account') && !userdata.isAdmin && (
           <>
             <div className={classes.socials}>
               {social.map((data) => {
@@ -80,6 +89,19 @@ const Header = () => {
                 <h6>Call agent</h6>
                 <p>666 888 222</p>
               </div>
+            </div>
+          </>
+        )}
+        {userdata.isAdmin && (
+          <>
+            <div className={classes.logout}>
+              <Button
+                variant='outlined'
+                onClick={() => logout()}
+                style={{ color: 'red' }}
+              >
+                Logout
+              </Button>
             </div>
           </>
         )}

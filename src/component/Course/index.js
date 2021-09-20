@@ -51,6 +51,14 @@ const useStyles = makeStyles((theme) => ({
       gridTemplateColumns: '1fr',
     },
   },
+  empty: {
+    height: '300px',
+    width: '100%',
+    gridColumn: '1/span 4',
+    display: 'grid',
+    textAlign: 'center',
+    placeItems: 'center',
+  },
 }))
 const HomePage = () => {
   const { filterdCard, filter, Level, category, updateFilter } =
@@ -71,9 +79,22 @@ const HomePage = () => {
           updateFilter={updateFilter}
         />
         <div className={classes.grid}>
-          {filterdCard.map((data, index) => {
-            return <Cards key={index} {...data} />
-          })}
+          {filterdCard.length < 1 ? (
+            <>
+              <div className={classes.empty}>
+                <h3>
+                  {' '}
+                  empty <br /> <br /> No courses to show .{' '}
+                </h3>
+              </div>
+            </>
+          ) : (
+            <>
+              {filterdCard.map((data, index) => {
+                return <Cards key={index} {...data} />
+              })}
+            </>
+          )}
         </div>
       </section>
     </>

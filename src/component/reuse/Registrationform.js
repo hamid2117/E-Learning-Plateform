@@ -183,7 +183,6 @@ export default function SignUp({ changeExpands }) {
                 className={classes.firstNamee}
                 id='firstName'
                 label='First Name'
-                autoFocus
               />
             </Grid>
             <Grid item xs={12} sm={6}>

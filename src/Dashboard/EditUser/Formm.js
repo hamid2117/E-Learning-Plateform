@@ -25,17 +25,13 @@ const useStyles = makeStyles((theme) => ({
 const validationSchema = yup.object({
   email: yup.string().email('Please enter a valid email address'),
 })
-const Formm = ({ config, id, setNewData }) => {
+const Formm = ({ config, id, setNewData, Apis }) => {
   const classes = useStyles()
 
   const onSubmit = async (value) => {
     const { ...data } = value
     try {
-      const { data: dataa } = await axios.put(
-        `https://gymhaskdfjlhasdlkjfadshfkjlasd.herokuapp.com/api/v1/user/${id}`,
-        data,
-        config
-      )
+      const { data: dataa } = await axios.put(`${Apis}user/${id}`, data, config)
       if (dataa) {
         setNewData(dataa)
         toast.success('User Data is updated.')
@@ -51,7 +47,8 @@ const Formm = ({ config, id, setNewData }) => {
     initialValues: {
       name: '',
       email: '',
-      trainer: false,
+      address: '',
+      teacher: false,
       isAdmin: false,
     },
     onSubmit,
@@ -102,13 +99,13 @@ const Formm = ({ config, id, setNewData }) => {
         <InputLabel id='select-filled-label'>Role</InputLabel>
         <Select
           labelId='select-filled-label'
-          id='trainer'
-          name='trainer'
-          value={formik.values.trainer}
+          id='teacher'
+          name='teacher'
+          value={formik.values.teacher}
           onChange={formik.handleChange}
         >
-          <MenuItem value={false}>Learner</MenuItem>
-          <MenuItem value={true}>Trainer</MenuItem>
+          <MenuItem value={false}>Student</MenuItem>
+          <MenuItem value={true}>Teacher</MenuItem>
         </Select>
         <InputLabel id='select-filled-label'>IsAdmin</InputLabel>
         <Select

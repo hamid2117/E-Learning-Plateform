@@ -5,6 +5,45 @@ import PinterestIcon from '@material-ui/icons/Pinterest'
 import Certificate from './img/certificate.png'
 import Skills from './img/skills.png'
 import Teacher from './img/teacher.png'
+import UsersIcon from '@material-ui/icons/GroupOutlined'
+import DashboardIcon from '@material-ui/icons/DashboardOutlined'
+import CollectionsBookmarkIcon from '@material-ui/icons/CollectionsBookmark'
+import NotInterestedIcon from '@material-ui/icons/NotInterested'
+import SpeakerNotesIcon from '@material-ui/icons/SpeakerNotes'
+
+export const Sidebar = [
+  // {
+  //   id: 1,
+  //   link: '/dashboard',
+  //   heading: 'Dashboard',
+  //   Icon: DashboardIcon,
+  // },
+  {
+    id: 2,
+    // link: '/userlist',
+    link: '/dashboard',
+    heading: 'Userlist ',
+    Icon: UsersIcon,
+  },
+  {
+    id: 3,
+    link: '/coursedashboard',
+    heading: 'Courses',
+    Icon: CollectionsBookmarkIcon,
+  },
+  // {
+  //   id: 4,
+  //   link: '/feedbacklist',
+  //   heading: 'Feedback',
+  //   Icon: SpeakerNotesIcon,
+  // },
+  // {
+  //   id: 5,
+  //   link: '/unverified',
+  //   heading: 'Unverified',
+  //   Icon: NotInterestedIcon,
+  // },
+]
 
 export const social = [
   {
@@ -47,26 +86,6 @@ export const heroCard = [
     Icon: Certificate,
     tilte: 'Certificates',
     para: 'value all over the world',
-  },
-]
-
-export const reviewdata = [
-  {
-    qoute: 'Do Somthing today that your future self will thank you for.',
-    heading: 'Muhammad Usama',
-  },
-  {
-    qoute:
-      'There is two kind of people 10 those who nows knows binary and those who dont .',
-    heading: 'Muhammad Subtain',
-  },
-  {
-    qoute: 'So, remember me I will remember you',
-    heading: 'Quran',
-  },
-  {
-    qoute: 'Never give up.',
-    heading: 'Muhammad Waqas',
   },
 ]
 

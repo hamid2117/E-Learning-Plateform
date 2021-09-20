@@ -1,7 +1,7 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Helmet } from 'react-helmet'
-import UserDashboard from '../Dashboard/Userlist'
+import CourseDashboard from '../Dashboard/Course/Corurselist'
 import Hero from './Hero'
 import Sidebar from '../Dashboard/Sidebar'
 const useStyles = makeStyles((theme) => ({
@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
 
 const CoursePage = () => {
   const classes = useStyles()
+
   return (
     <>
       <Helmet>
@@ -30,7 +31,7 @@ const CoursePage = () => {
       <section className={classes.main}>
         <Sidebar />
         <div className={classes.main2}>
-          <UserDashboard />
+          <CourseDashboard />
         </div>
       </section>
     </>

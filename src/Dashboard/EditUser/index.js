@@ -10,6 +10,7 @@ import {
 import axios from 'axios'
 import { useAuthContext } from './../../context/AuthContext'
 import Formm from './Formm'
+import { Apis } from '../../Api'
 
 // or
 const useStyles = makeStyles((theme) => ({
@@ -44,10 +45,7 @@ const User = () => {
 
   const getData = async () => {
     try {
-      const { data } = await axios.get(
-        `https://gymhaskdfjlhasdlkjfadshfkjlasd.herokuapp.com/api/v1/user/${id}`,
-        config
-      )
+      const { data } = await axios.get(`${Apis}user/${id}`, config)
       if (data) {
         console.log(data)
         setNewData(data)
@@ -99,9 +97,20 @@ const User = () => {
               </div>
               <div>
                 <span style={{ fontWeight: 'bold' }}> Role : </span>
-
                 <span style={{ marginLeft: '10px', marginBottom: '15px' }}>
-                  {newData && newData.trainer ? 'Trainer' : 'Learner'}
+                  {newData && newData.teacher ? 'Trainer' : 'Learner'}
+                </span>
+              </div>
+              <div>
+                <span style={{ fontWeight: 'bold' }}> IsAdmin : </span>
+                <span style={{ marginLeft: '10px', marginBottom: '15px' }}>
+                  {newData && newData.isAdmin ? 'Admin' : 'User'}
+                </span>
+              </div>
+              <div>
+                <span style={{ fontWeight: 'bold' }}> Address : </span>
+                <span style={{ marginLeft: '10px', marginBottom: '15px' }}>
+                  {newData && newData.address}
                 </span>
               </div>
               <div style={{ margin: '20px 0px' }}>
@@ -117,7 +126,12 @@ const User = () => {
             <div style={{ marginBottom: '15px' }}>
               <span style={{ fontWeight: 'bold' }}>edit</span>
             </div>
-            <Formm config={config} id={id} setNewData={setNewData} />
+            <Formm
+              config={config}
+              id={id}
+              setNewData={setNewData}
+              Apis={Apis}
+            />
           </div>
         </div>
       </div>

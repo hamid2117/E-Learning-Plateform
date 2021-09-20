@@ -1,9 +1,8 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Helmet } from 'react-helmet'
-import UserDashboard from '../Dashboard/Userlist'
-import Hero from './Hero'
 import Sidebar from '../Dashboard/Sidebar'
+import UserEdit from '../Dashboard/EditUser'
 const useStyles = makeStyles((theme) => ({
   main: {
     width: '100%',
@@ -24,13 +23,12 @@ const CoursePage = () => {
   return (
     <>
       <Helmet>
-        <title>Zilom | Dashboard</title>
+        <title>Zilom | UserEdit</title>
       </Helmet>
-      <Hero />
       <section className={classes.main}>
         <Sidebar />
         <div className={classes.main2}>
-          <UserDashboard />
+          <UserEdit />
         </div>
       </section>
     </>

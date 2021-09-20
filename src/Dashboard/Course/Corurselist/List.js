@@ -1,24 +1,21 @@
 import React, { useState, useEffect } from 'react'
 import { DataGrid } from '@material-ui/data-grid'
-import { rows } from './../../DummyData'
+import { CardData } from './../../../data'
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline'
-import { useAuthContext } from './../../context/AuthContext'
 import { Link, Redirect } from 'react-router-dom'
 import { IconButton, Button, CircularProgress } from '@material-ui/core'
 import axios from 'axios'
-// import { useGlobalUiContext } from './../../context/uiContext'
-import DeleteModel from '../DeleteModel'
+import DeleteModel from '../../DeleteModel'
 import { toast } from 'react-toastify'
-import { Apis } from '../../Api'
+import { Apis } from '../../../Api'
 
-const UserList = () => {
-  const [data, setData] = useState(rows)
+const CourseList = ({ userdata, adminCloseCourse }) => {
+  const [data, setData] = useState(CardData)
+  const [loading, setLoading] = useState(true)
   const [redirect, setRedirect] = useState(false)
   const [model, setModel] = useState(false)
   const [deleteData, setDeleteData] = useState(false)
   const [newId, setNewId] = useState('')
-  const [loading, setLoading] = useState(false)
-  const { userdata } = useAuthContext()
   const { token } = userdata
 
   const config = {
@@ -26,16 +23,19 @@ const UserList = () => {
       Authorization: `Bearer ${token}`,
     },
   }
+
   const getData = async () => {
     try {
       setLoading(true)
-      const response = await axios.get(`${Apis}users`, config)
-      if (response) {
-        setData(response.data)
+      const { data } = await axios.get(`${Apis}courses`, config)
+      if (data) {
         setLoading(false)
+        setData(data)
       }
     } catch (error) {
-      setLoading(false)
+      if (error.response && error.response.status === 401) {
+        setRedirect(true)
+      }
       console.log(error)
     }
   }
@@ -43,10 +43,19 @@ const UserList = () => {
   const handleDelete = async (id) => {
     try {
       setLoading(true)
-      const response = await axios.delete(`${Apis}user/${id}`, config)
+      const response = await axios.delete(`${Apis}course/${id}`, config)
       if (response) {
         getData()
-        toast.error('User is deleted.')
+        setDeleteData(false)
+        toast.error('Course is deleted.', {
+          position: 'top-center',
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        })
       }
     } catch (error) {
       console.log(error)
@@ -64,15 +73,9 @@ const UserList = () => {
     setModel(true)
   }
 
-  // useEffect(() => {
-  //   if (adminRegisterReload) {
-  //     getData()
-  //   }
-  // }, [adminRegisterReload])
-
   useEffect(() => {
     getData()
-  }, [])
+  }, [adminCloseCourse])
 
   useEffect(() => {
     if (deleteData) {
@@ -81,33 +84,12 @@ const UserList = () => {
   }, [deleteData])
 
   const columns = [
-    { field: '_id', headerName: 'ID', width: 120 },
-    { field: 'name', headerName: 'Name ', width: 150 },
-    { field: 'email', headerName: 'Email ', width: 250 },
-    {
-      field: 'teacher',
-      headerName: 'Teacher',
-      description: 'This column has a value getter and is not sortable.',
-      width: 160,
-    },
-    {
-      field: 'createdAt',
-      headerName: 'CreatedAt',
-      width: 170,
-      renderCell: (params) => {
-        return (
-          <div className='userList'>
-            {params.row.createdAt.substring(0, 10)}
-          </div>
-        )
-      },
-    },
-    {
-      field: 'isAdmin',
-      headerName: 'Is Admin',
-      description: 'This column has a value getter and is not sortable.',
-      width: 150,
-    },
+    { field: '_id', headerName: 'ID', width: 100 },
+    { field: 'heading', headerName: 'Course heading', width: 260 },
+    { field: 'category', headerName: 'Category', width: 170 },
+    { field: 'level', headerName: 'Level', width: 160 },
+    { field: 'duration', headerName: 'Duration', width: 140 },
+    { field: 'price', headerName: 'Price', width: 140 },
     {
       field: 'action',
       headerName: 'Action',
@@ -115,7 +97,7 @@ const UserList = () => {
       renderCell: (params) => {
         return (
           <>
-            <Button component={Link} to={`/useredit/${params.row._id}`}>
+            <Button component={Link} to={`/courseedit/${params.row._id}`}>
               Edit
             </Button>
             <IconButton
@@ -168,4 +150,4 @@ const UserList = () => {
   )
 }
 
-export default UserList
+export default CourseList

@@ -6,7 +6,7 @@ import { FooterData, links, Courses, Featured } from './FooterData'
 import AccessTimeIcon from '@material-ui/icons/AccessTime'
 import { social } from '../../DummyData'
 import { useLocation } from 'react-router-dom'
-
+import { useAuthContext } from '../../context/AuthContext'
 const useStyles = makeStyles({
   main: {
     width: '100%',
@@ -147,9 +147,14 @@ const useStyles = makeStyles({
   },
 })
 const Footer = () => {
+  const { userdata } = useAuthContext()
+
   const classes = useStyles()
   const location = useLocation()
   if (location.pathname.match('/account')) {
+    return null
+  }
+  if (userdata.isAdmin === true) {
     return null
   }
   return (

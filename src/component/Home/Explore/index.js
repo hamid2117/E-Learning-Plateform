@@ -71,9 +71,22 @@ const HomePage = () => {
           updateFilter={updateFilter}
         />
         <div className={classes.grid}>
-          {fourCard.map((data, index) => {
-            return <Cards key={index} {...data} />
-          })}
+          {fourCard.length < 1 ? (
+            <>
+              <div className={classes.empty}>
+                <h3>
+                  {' '}
+                  empty <br /> <br /> No courses to show .{' '}
+                </h3>
+              </div>
+            </>
+          ) : (
+            <>
+              {fourCard.map((data, index) => {
+                return <Cards key={index} {...data} />
+              })}
+            </>
+          )}
         </div>
       </section>
     </>
