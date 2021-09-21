@@ -10,6 +10,8 @@ import CourseDashboard from './DashboardCourse'
 import UserEdit from './UserEdit'
 import CourseEdit from './CourseEdit'
 import Tcourselist from './Tcourselist'
+import Contact from './ContactPage'
+import About from './AboutPage'
 export {
   Home,
   UserDashboard,
@@ -23,4 +25,6 @@ export {
   CourseDashboard,
   CourseEdit,
   Tcourselist,
+  Contact,
+  About,
 }

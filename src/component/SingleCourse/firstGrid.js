@@ -75,7 +75,15 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }))
-const HomePage = () => {
+const HomePage = ({
+  review,
+  heading,
+  star,
+  image,
+  description,
+  learn,
+  courseData,
+}) => {
   const classes = useStyles()
   const temStar = Array.from({ length: 5 }, (_, index) => {
     const number = index + 0.5
@@ -96,7 +104,7 @@ const HomePage = () => {
       <section className={classes.main}>
         <div className={classes.firstdiv}>
           <div className={classes.heading}>
-            <h3>The Complete Cyber Security Course</h3>
+            <h3>{heading}</h3>
             <div style={{ justifySelf: 'end' }}>
               <Button
                 variant='contained'
@@ -108,56 +116,42 @@ const HomePage = () => {
               </Button>
             </div>
             <div>
-              <Stars stars={4.5} reviews={3} />
+              <Stars stars={star} reviews={review} />
             </div>
           </div>
           <div className={classes.img}>
-            <img src={Teacherimg} alt='Teacher Image' />
+            <img src={image} alt='Teacher Image' />
           </div>
           <div className={classes.detail}>
-            <h5>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Optio
-              officiis saepe assumenda, tenetur inventore incidunt dolores
-              possimus, officia perspiciatis ducimus quod, vitae consequatur
-              omnis corporis excepturi iure pariatur voluptatibus? Beatae nemo
-              consequatur explicabo accusamus nulla nostrum qui repellendus sed
-              unde!
-            </h5>
+            <h5>{description}</h5>
             <br />
             <h5 style={{ fontWeight: '700' }}> What will I learn?</h5>
             <div>
               <div className={classes.point}>
-                <div className={classes.pointchild}>
-                  <img src={Check} style={{ height: '25px' }} alt='thick' />
-                  <p>It has survived not only five centuries . </p>
-                </div>
-                <div className={classes.pointchild}>
-                  <img src={Check} style={{ height: '25px' }} alt='thick' />
-                  <p>Lorem Ipsum is simply dummy text of the new design . </p>
-                </div>
-                <div className={classes.pointchild}>
-                  <img src={Check} style={{ height: '25px' }} alt='thick' />
-                  <p>Printing and type setting ipsum</p>
-                </div>
-                <div className={classes.pointchild}>
-                  <img src={Check} style={{ height: '25px' }} alt='thick' />
-                  <p>Take a look at our round up of the best shows</p>
-                </div>
+                {learn.map((data, index) => {
+                  const { point } = data
+                  return (
+                    <div key={index} className={classes.pointchild}>
+                      <img src={Check} style={{ height: '25px' }} alt='thick' />
+                      <p>{point}</p>
+                    </div>
+                  )
+                })}
               </div>
             </div>
           </div>
         </div>
         <br />
         <div className={classes.CourseDetail}>
-          <CourseDetail />
+          <CourseDetail courseData={courseData} />
         </div>
         <div className={classes.divsecond}>
           <div>
             <h5>Student Feedback</h5>
             <div className={classes.review}>
-              <h4>4.0</h4>
+              <h4>{star}</h4>
               <div className={classes.stars}>{temStar}</div>
-              <h5>2 reviews</h5>
+              <h5>{review} reviews</h5>
             </div>
           </div>
           <div className={classes.comments}>

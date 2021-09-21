@@ -1,7 +1,7 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import DataAcc from './DataAcc'
-import { courseData } from './coursedata'
+// import { courseData } from './coursedata'
 const useStyles = makeStyles((theme) => ({
   header: {
     textAlign: 'center',
@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const Accordian = () => {
+const Accordian = ({ courseData }) => {
   const classes = useStyles()
 
   return (

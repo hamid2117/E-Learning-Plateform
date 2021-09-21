@@ -80,7 +80,17 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: '30px',
   },
 }))
-const HomePage = () => {
+const HomePage = ({
+  price,
+  lessons,
+  level,
+  duration,
+  language,
+  maxStudent,
+  requirement,
+  target,
+  material,
+}) => {
   const classes = useStyles()
 
   return (
@@ -88,7 +98,7 @@ const HomePage = () => {
       <section className={classes.main}>
         <div className={classes.fistdiv}>
           <div className={classes.heading}>
-            <h4>$32.00</h4>
+            <h4>${price}.00</h4>
             <Button variant='contained' color='primary' className={classes.btn}>
               Add to Card
             </Button>
@@ -99,22 +109,15 @@ const HomePage = () => {
             </div>
             <div>
               <div className={classes.point}>
-                <div className={classes.pointchild}>
-                  <img src={Check} style={{ height: '25px' }} alt='thick' />
-                  <p>It has survived not only five centuries . </p>
-                </div>
-                <div className={classes.pointchild}>
-                  <img src={Check} style={{ height: '25px' }} alt='thick' />
-                  <p>Lorem Ipsum is simply dummy text of the new design . </p>
-                </div>
-                <div className={classes.pointchild}>
-                  <img src={Check} style={{ height: '25px' }} alt='thick' />
-                  <p>Printing and type setting ipsum</p>
-                </div>
-                <div className={classes.pointchild}>
-                  <img src={Check} style={{ height: '25px' }} alt='thick' />
-                  <p>Take a look at our round up of the best shows</p>
-                </div>
+                {material.map((data, index) => {
+                  const { heading } = data
+                  return (
+                    <div className={classes.pointchild} key={index}>
+                      <img src={Check} style={{ height: '25px' }} alt='thick' />
+                      <p>{heading}</p>
+                    </div>
+                  )
+                })}
               </div>
             </div>
           </div>
@@ -127,7 +130,7 @@ const HomePage = () => {
               </IconButton>
             </div>
             <p>
-              <span> Durations: </span> 30h
+              <span> Durations: </span> {duration}h
             </p>
             <Divider className={classes.divider} />
           </div>
@@ -138,7 +141,7 @@ const HomePage = () => {
               </IconButton>
             </div>
             <p>
-              <span> Lectures: </span> 12
+              <span> Lectures: </span> {lessons}
             </p>
             <Divider className={classes.divider} />
           </div>
@@ -149,7 +152,7 @@ const HomePage = () => {
               </IconButton>
             </div>
             <p>
-              <span> Students: </span> Max 40
+              <span> Students: </span> Max {maxStudent}
             </p>
             <Divider className={classes.divider} />
           </div>
@@ -160,7 +163,7 @@ const HomePage = () => {
               </IconButton>
             </div>
             <p>
-              <span> level: </span> Intermediat
+              <span> level: </span> {level}
             </p>
             <Divider className={classes.divider} />
           </div>
@@ -171,7 +174,7 @@ const HomePage = () => {
               </IconButton>
             </div>
             <p>
-              <span> Language: </span> English
+              <span> Language: </span> {language}
             </p>
             <Divider className={classes.divider} />
           </div>
@@ -191,36 +194,30 @@ const HomePage = () => {
         <div className={classes.fourthduv}>
           <div className={classes.require}>Requirement</div>
           <div className={classes.point}>
-            <div className={classes.pointchild}>
-              <img src={Check} style={{ height: '25px' }} alt='thick' />
-              <p>It has survived not only five centuries . </p>
-            </div>
-            <div className={classes.pointchild}>
-              <img src={Check} style={{ height: '25px' }} alt='thick' />
-              <p>Lorem Ipsum is simply dummy text of the new design . </p>
-            </div>
-            <div className={classes.pointchild}>
-              <img src={Check} style={{ height: '25px' }} alt='thick' />
-              <p>Printing and type setting ipsum</p>
-            </div>
+            {requirement.map((data, index) => {
+              const { point } = data
+              return (
+                <div key={index} className={classes.pointchild}>
+                  <img src={Check} style={{ height: '25px' }} alt='thick' />
+                  <p>{point}</p>
+                </div>
+              )
+            })}
           </div>
         </div>
         <br />
         <div className={classes.fivediv}>
           <div className={classes.require}>Target Audience</div>
           <div className={classes.point}>
-            <div className={classes.pointchild}>
-              <img src={Check} style={{ height: '25px' }} alt='thick' />
-              <p>It has survived not only five centuries . </p>
-            </div>
-            <div className={classes.pointchild}>
-              <img src={Check} style={{ height: '25px' }} alt='thick' />
-              <p>Lorem Ipsum is simply dummy text of the new design . </p>
-            </div>
-            <div className={classes.pointchild}>
-              <img src={Check} style={{ height: '25px' }} alt='thick' />
-              <p>Printing and type setting ipsum</p>
-            </div>
+            {target.map((data, index) => {
+              const { point } = data
+              return (
+                <div key={index} className={classes.pointchild}>
+                  <img src={Check} style={{ height: '25px' }} alt='thick' />
+                  <p>{point}</p>
+                </div>
+              )
+            })}
           </div>
         </div>
       </section>

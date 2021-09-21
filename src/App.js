@@ -14,6 +14,8 @@ import {
   UserEdit,
   CourseEdit,
   Tcourselist,
+  Contact,
+  About,
 } from './pages'
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom'
 import { Navbar, Header, Footer, Sidebar, Submenu } from './component/reuse'
@@ -67,6 +69,9 @@ const App = () => {
             <Route exact path='/dashboard'>
               <UserDashboard />
             </Route>
+            <Route exact path='/about'>
+              <About />
+            </Route>
             <Route exact path='/useredit/:id'>
               <UserEdit />
             </Route>
@@ -91,8 +96,8 @@ const App = () => {
             <Route exact path='/course/:id'>
               <SingleCourse />
             </Route>
-            <Route exact path='/course'>
-              <Course />
+            <Route exact path='/contact'>
+              <Contact />
             </Route>
             <Route exact path='/account'>
               <Account />

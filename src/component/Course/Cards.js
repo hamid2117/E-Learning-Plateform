@@ -7,6 +7,7 @@ import PersonOutlineIcon from '@material-ui/icons/PersonOutline'
 import Stars from './Stars'
 import MenuBookIcon from '@material-ui/icons/MenuBook'
 import FlagOutlinedIcon from '@material-ui/icons/FlagOutlined'
+import { Link } from 'react-router-dom'
 const useStyles = makeStyles((theme) => ({
   main: {
     width: '100%',
@@ -67,14 +68,21 @@ const HomePage = ({
   price,
   lessons,
   level,
+  image,
+  _id,
 }) => {
   const classes = useStyles()
 
   return (
     <>
-      <Paper elevation={3} className={classes.main}>
+      <Paper
+        elevation={3}
+        className={classes.main}
+        component={Link}
+        to={`/course/${_id}`}
+      >
         <div>
-          <img src={Teacher} className={classes.img} alt='image' />
+          <img src={image} className={classes.img} alt='image' />
         </div>
         <div style={{ padding: '0px 20px' }}>
           <img src={Profile} alt='profile' className={classes.profile} />

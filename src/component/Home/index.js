@@ -6,11 +6,11 @@ import HeroCard from './HeroCard'
 import About from './About'
 import Explore from './Explore'
 import Registeration from './Registeration'
+import Category from './Categories'
 import Mission from './Mission'
 import Testimonial from './Testimonial'
-import Newseltter from './Newseltter'
-import Category from './Categories'
 import Blog from './Blog'
+import Newseltter from './Newseltter'
 const useStyles = makeStyles((theme) => ({
   main: {
     '@media (max-width: 500px)': {},

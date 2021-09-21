@@ -8,6 +8,7 @@ import { Link, useLocation } from 'react-router-dom'
 import ExpandIcon from '@material-ui/icons/ExpandMore'
 import { Button, Menu, MenuItem } from '@material-ui/core'
 import { useAuthContext } from '../../context/AuthContext'
+
 const Navbar = () => {
   const { openSidebar, openSubmenu, closeSubmenu } = useUiContext()
   const matches = useMediaQuery('(max-width:800px)')
@@ -103,6 +104,15 @@ const Navbar = () => {
                   onClick={handleClose}
                 >
                   Dashboard
+                </MenuItem>
+              )}
+              {userdata.teacher && (
+                <MenuItem
+                  component={Link}
+                  to='/tcourselist'
+                  onClick={handleClose}
+                >
+                  My dashboard
                 </MenuItem>
               )}
               <MenuItem onClick={handleLogout}>Logout </MenuItem>

@@ -7,12 +7,15 @@ import PersonOutlineIcon from '@material-ui/icons/PersonOutline'
 import Stars from './Stars'
 import MenuBookIcon from '@material-ui/icons/MenuBook'
 import FlagOutlinedIcon from '@material-ui/icons/FlagOutlined'
+import { Link } from 'react-router-dom'
+
 const useStyles = makeStyles((theme) => ({
   main: {
     width: '100%',
     height: '480px',
     margin: '0px auto',
     marginTop: '60px',
+    cursor: 'pointer',
     display: 'grid',
     gridTemplateRows: '180px 30px',
     borderRadius: '20px 20px 10px 10px',
@@ -58,14 +61,26 @@ const useStyles = makeStyles((theme) => ({
     gridTemplateColumns: '15% 45% 15% 25%',
   },
 }))
-const HomePage = () => {
+
+const HomePage = ({
+  name,
+  enrolled,
+  heading,
+  review,
+  star,
+  price,
+  lessons,
+  level,
+  image,
+  _id,
+}) => {
   const classes = useStyles()
 
   return (
     <>
-      <Paper elevation={3} className={classes.main}>
+      <Paper className={classes.main} component={Link} to={`/course/${_id}`}>
         <div>
-          <img src={Teacher} className={classes.img} alt='image' />
+          <img src={image} className={classes.img} alt='image' />
         </div>
         <div style={{ padding: '0px 20px' }}>
           <img src={Profile} alt='profile' className={classes.profile} />
@@ -76,25 +91,23 @@ const HomePage = () => {
               gridTemplateColumns: '80% 17% 3%',
             }}
           >
-            <p>Mr. Bochelly</p>
+            <p>{name}</p>
             <PersonOutlineIcon />
-            <p>4</p>
+            <p>{enrolled}</p>
           </div>
           <div style={{ marginTop: '20px' }}>
-            <h5 style={{ maxWidth: '80%' }}>
-              Responsive Web Design with HTML5 & CSS3{' '}
-            </h5>
+            <h5 style={{ maxWidth: '80%' }}>{heading}</h5>
           </div>
-          <Stars stars={4.5} reviews={3} />
+          <Stars stars={star} reviews={review} />
           <div>
-            <h4 style={{ fontSize: '18px' }}>3.99$</h4>
+            <h4 style={{ fontSize: '18px' }}>{price}$</h4>
           </div>
           <Divider className={classes.divider} />
           <div className={classes.last}>
             <MenuBookIcon style={{ color: '#3B56E7' }} />
-            <p>14 lessons</p>
+            <p>{lessons} lessons</p>
             <FlagOutlinedIcon style={{ color: '#3B56E7' }} />
-            <p>Expert</p>
+            <p>{level}</p>
           </div>
         </div>
       </Paper>

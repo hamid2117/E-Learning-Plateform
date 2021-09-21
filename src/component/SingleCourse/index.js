@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import FirstGrid from './firstGrid'
 import SecondGrid from './SecondGrid'
 import { useParams } from 'react-router-dom'
+import { SingleCourseData } from '../../data'
 const useStyles = makeStyles((theme) => ({
   main: {
     width: '100%',
@@ -32,13 +33,12 @@ const useStyles = makeStyles((theme) => ({
 const HomePage = () => {
   const classes = useStyles()
   const courseid = useParams()
-  console.log(courseid)
   return (
     <>
       <section className={classes.main}>
         <div className={classes.grid}>
-          <FirstGrid />
-          <SecondGrid />
+          <FirstGrid {...SingleCourseData} />
+          <SecondGrid {...SingleCourseData} />
         </div>
       </section>
     </>
