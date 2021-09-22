@@ -6,15 +6,18 @@ import Logo from '../../img/logo.png'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 import { Link, useLocation } from 'react-router-dom'
 import ExpandIcon from '@material-ui/icons/ExpandMore'
-import { Button, Menu, MenuItem } from '@material-ui/core'
+import { ShoppingBasket } from '@material-ui/icons'
+import { Button, Menu, MenuItem, IconButton } from '@material-ui/core'
 import { useAuthContext } from '../../context/AuthContext'
-
+import { Badge } from '@material-ui/core'
+import { useCartContext } from '../../context/cart_context'
 const Navbar = () => {
   const { openSidebar, openSubmenu, closeSubmenu } = useUiContext()
   const matches = useMediaQuery('(max-width:800px)')
   const { logout, userdata } = useAuthContext()
   const [anchorEl, setAnchorEl] = React.useState(null)
   const location = useLocation()
+  const { total_items } = useCartContext()
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget)
@@ -48,13 +51,26 @@ const Navbar = () => {
     <nav className='nav' onMouseOver={handleSubmenu}>
       <div className='nav-center'>
         <div className='nav-header'>
-          {matches && (
+          {matches ? (
             <img
               src={Logo}
               style={{ width: '90px' }}
               className='nav-logo'
               alt=''
             />
+          ) : (
+            <div>
+              <IconButton
+                aria-label='cart'
+                component={Link}
+                to='/basket'
+                style={{ color: 'black' }}
+              >
+                <Badge badgeContent={total_items} color='primary'>
+                  <ShoppingBasket />
+                </Badge>
+              </IconButton>
+            </div>
           )}
           <button className='btn toggle-btn' onClick={openSidebar}>
             <MenuIcon />
@@ -77,6 +93,7 @@ const Navbar = () => {
             </button>
           </li>
         </ul>
+
         {userdata.email ? (
           <>
             <Button

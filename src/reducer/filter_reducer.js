@@ -1,4 +1,7 @@
 const filter_reducer = (state, action) => {
+  if (action.type === 'Insert_Data') {
+    return { ...state, cards: action.payload }
+  }
   if (action.type === 'Load_Data') {
     const allCards = state.cards
 

@@ -1,14 +1,8 @@
 import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { Button, Divider } from '@material-ui/core'
-import List from '@material-ui/core/List'
-import { Link } from 'react-router-dom'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemText from '@material-ui/core/ListItemText'
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever'
 import { IconButton } from '@material-ui/core'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
-import { AmountBtn } from './../smallCp'
 import { useCartContext } from './../../context/cart_context'
 
 const useStyles = makeStyles((theme) => ({
@@ -108,6 +102,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'grid',
     gridTemplateColumns: '60px 50px',
     alignItems: 'center',
+    gap: '0px 5px',
   },
   colorbtn: {
     display: 'flex',
@@ -115,29 +110,16 @@ const useStyles = makeStyles((theme) => ({
     width: '0.5rem',
     height: '0.5rem',
     padding: '8px',
-    borderRadius: '50%',
-    background: '#222',
-    marginRight: '0.5rem',
-    border: 'none',
     opacity: 0.8,
     alignItems: 'center',
     justifyContent: 'center',
-    boxShadow:
-      'rgba(0, 0, 0, 0.35) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.22) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.19) 0px -3px 5px',
   },
 }))
 
-const BasketData = ({ id, name, color, image, price, amount }) => {
+const BasketData = ({ id, price, heading, duration, lessons, image }) => {
   const classes = useStyles()
   const matches = useMediaQuery('(max-width:800px)')
-
   const { removeItem, toggleAmount } = useCartContext()
-  const increase = () => {
-    toggleAmount(id, 'inc')
-  }
-  const decrease = () => {
-    toggleAmount(id, 'dec')
-  }
   return (
     <>
       <div className={classes.imgSection}>
@@ -156,14 +138,13 @@ const BasketData = ({ id, name, color, image, price, amount }) => {
           }}
         />
         <div>
-          <p style={{ margin: '0px' }}>{name}</p>
+          <p style={{ margin: '0px' }}>{heading}</p>
           <div className={classes.colors}>
-            <span> Color : </span>
+            <span> Duration {'   '}</span>
             <div style={{ width: '30px' }}>
-              <IconButton
-                className={classes.colorbtn}
-                style={{ backgroundColor: color }}
-              ></IconButton>
+              <p>
+                {'   '} : {duration}
+              </p>
             </div>
           </div>
           {matches && <p style={{ margin: '0px', color: 'red' }}>{price}rs</p>}
@@ -172,8 +153,10 @@ const BasketData = ({ id, name, color, image, price, amount }) => {
       {!matches && (
         <p style={{ margin: '0px', marginRight: '10px' }}>{price}rs</p>
       )}
-      <AmountBtn amount={amount} increase={increase} decrease={decrease} />
-      {!matches && <p className={classes.subtotal}>{price * amount}rs</p>}
+      <div>
+        <p>{lessons} lessons</p>
+      </div>
+      {!matches && <p className={classes.subtotal}>{price}rs</p>}
       <IconButton
         onClick={() => removeItem(id)}
         style={{ height: '46px', margin: 'auto 0px' }}

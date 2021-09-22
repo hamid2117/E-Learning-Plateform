@@ -1,10 +1,12 @@
 import React, { useReducer, useContext, createContext, useEffect } from 'react'
 import reducer from '../reducer/filter_reducer'
 import { CardData } from '../data'
+import axios from 'axios'
+import { Apis } from '../Api'
 const FilterContext = createContext()
 
 const initialState = {
-  cards: CardData,
+  cards: [],
   filterdCard: [],
   filter: {
     text: '',
@@ -39,9 +41,14 @@ export const FilterProvider = ({ children }) => {
     dispatch({ type: 'filter_card' })
   }, [state.filter])
 
+  useEffect(async () => {
+    const { data } = await axios.get(`${Apis}courses`)
+    dispatch({ type: 'Insert_Data', payload: data })
+  }, [CardData])
+
   useEffect(() => {
     dispatch({ type: 'Load_Data' })
-  }, [CardData])
+  }, [state.cards])
 
   return (
     <FilterContext.Provider value={{ ...state, Level, category, updateFilter }}>

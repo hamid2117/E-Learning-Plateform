@@ -52,14 +52,8 @@ export default function PaymentForm({ handleNext, activeStep, handleBack }) {
               control={<Radio />}
               label='DebitCard or Paypal'
             />
-            <FormControlLabel
-              value='cash'
-              control={<Radio />}
-              label='Cash on Delivery'
-            />
           </RadioGroup>
         </FormControl>
-
         <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
           {activeStep !== 0 && (
             <Button

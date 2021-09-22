@@ -12,6 +12,8 @@ import CourseEdit from './CourseEdit'
 import Tcourselist from './Tcourselist'
 import Contact from './ContactPage'
 import About from './AboutPage'
+import Checkout from './CheckoutPage'
+import Basket from './BasketPage'
 export {
   Home,
   UserDashboard,
@@ -27,4 +29,6 @@ export {
   Tcourselist,
   Contact,
   About,
+  Basket,
+  Checkout,
 }

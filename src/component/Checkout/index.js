@@ -8,7 +8,7 @@ import StepLabel from '@material-ui/core/StepLabel'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import AddressForm from './ShippingInfo'
-import { useAuthContext } from './../../context/auth_context'
+import { useAuthContext } from './../../context/AuthContext'
 import { Link, useHistory } from 'react-router-dom'
 import PaymentForm from './PaymentForm'
 import Review from './Review'
@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const steps = ['Shipping address', 'Payment details', 'Review your order']
+const steps = ['Billing Detail', 'Payment details', 'Review your order']
 
 export default function Checkout() {
   const { userdata } = useAuthContext()
@@ -57,12 +57,11 @@ export default function Checkout() {
   const history = useHistory()
   const classes = useStyles()
   const [activeStep, setActiveStep] = React.useState(0)
-
   useEffect(() => {
-    if (!userdata.firstName) {
+    if (!userdata.email) {
       history.push('/account')
     }
-  }, [userdata, userdata.firstName])
+  }, [userdata, userdata.email])
 
   const handleNext = () => {
     setActiveStep(activeStep + 1)
@@ -125,15 +124,15 @@ export default function Checkout() {
             {activeStep === steps.length ? (
               <>
                 <Typography variant='h5' gutterBottom>
-                  Jazāk Allāhu Khayran for your order.
+                  Thank You for replacing order.
                 </Typography>
                 <Typography variant='subtitle1'>
                   Your order number is #
                   <span style={{ color: 'green', fontWeight: '600' }}>
                     {done}
                   </span>
-                  . We will give you an update about the order in your profile .
-                  You will get an order in some hours .
+                  We will give you an update about the order in your profile .
+                  Then you able to pay to buy this course .
                 </Typography>
                 <div
                   style={{

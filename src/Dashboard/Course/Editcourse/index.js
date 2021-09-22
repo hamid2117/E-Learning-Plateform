@@ -1,218 +1,174 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles'
-import { CalendarToday, Description, Title } from '@material-ui/icons'
-import axios from 'axios'
-import { useAuthContext } from '../../../context/AuthContext'
+import { Button, TextField, Divider } from '@material-ui/core'
+import { Save } from '@material-ui/icons'
+import { useGlobalContext } from '../../../context/courseContext'
 import Formm from './Formm'
-import { Apis } from '../../../Api'
-// or
+import { useParams, Redirect } from 'react-router-dom'
+
 const useStyles = makeStyles((theme) => ({
   main: {
     width: '100%',
-    maxWidth: '90%',
-    margin: '0px auto',
-    marginBottom: '35px',
+    maxWidth: '1270px',
+    margin: '20px auto',
+    '@media (max-width: 800px)': {
+      gridTemplateColumns: '100%',
+    },
+  },
+  head: {
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr',
   },
   main2: {
-    width: '100%',
-    maxWidth: '90%',
-    margin: '0px auto',
-    height: '70vh',
     display: 'grid',
-    gap: '9px',
-    gridTemplateColumns: '25% 75%',
+    gridTemplateColumns: '40% 60% ',
+  },
+  fieldgrid: {
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr',
+    gap: '20px 100px',
+  },
+  gridItem: {
+    display: 'grid',
+    gridTemplateColumns: '30% 10% 15% 15% 6% 15%',
+    gap: '20px 30px',
+    marginBottom: '20px',
+  },
+  totalAll: {
+    display: 'grid',
+    justifyItems: 'end',
+    gridTemplateColumns: '1fr 1fr',
+  },
+  bordertotal: {
+    border: '1px solid grey',
+    padding: '70px',
+  },
+  childtotal: {
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr',
+    gap: '20px',
   },
 }))
 
-const User = () => {
+const Hero = () => {
   const classes = useStyles()
+  const [redirect, setRedirect] = useState(false)
+  const {
+    total_items,
+    total_amount,
+    invoiceNumber,
+    refNumber,
+    handleInvoiceDate,
+    handleDueDate,
+    handleNumberChange,
+    note,
+    handleNoteChange,
+    handleDataId,
+    handleUpdateSubmit,
+    Success,
+    setSuccess,
+  } = useGlobalContext()
   const { id } = useParams()
-  const [newData, setNewData] = useState({})
-  const { userdata } = useAuthContext()
-  const { token } = userdata
-  const config = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  }
 
-  const getData = async () => {
-    try {
-      const { data } = await axios.get(`${Apis}course/${id}`, config)
-      if (data) {
-        setNewData(data)
-      }
-    } catch (error) {
-      if (error.response && error.response.status === 401) {
-      }
-      console.log(error)
-    }
-  }
   useEffect(() => {
-    getData()
-  }, [])
+    handleDataId(id)
+  }, [id])
+
+  useEffect(() => {
+    if (Success) {
+      // enqueueSnackbar('This invoice is Updated .', { variant: 'success' })
+      setRedirect(true)
+      setSuccess(false)
+    }
+  }, [Success])
+
+  if (redirect) {
+    return <Redirect to='/allinvoices' />
+  }
 
   return (
     <>
-      <div>
-        <div className={classes.main}>
-          <h1>Edit Course</h1>
+      <section className={classes.main}>
+        <div className={classes.head}>
+          <h3>Course</h3>
+          <div style={{ justifySelf: 'end' }}>
+            <Button
+              variant='contained'
+              color='primary'
+              onClick={() => handleUpdateSubmit(id)}
+              startIcon={<Save />}
+            >
+              Update Course
+            </Button>
+          </div>
         </div>
         <div className={classes.main2}>
           <div>
-            <div>
-              <span style={{ fontWeight: 'bold' }}>Account Detail</span>
-              <div style={{ marginBottom: '9px' }}>
-                <span style={{ fontWeight: 'bold' }}> Id </span>
-                <span style={{ marginLeft: '10px' }}>
-                  {newData && newData._id}
-                </span>
-              </div>
-              <div style={{ marginBottom: '9px' }}>
-                <CalendarToday />
-                <span
-                  style={{
-                    marginLeft: '10px',
-                    marginBottom: '15px',
-                    fontSize: '13px',
-                  }}
-                >
-                  {newData && newData.createdAt}
-                </span>
-              </div>
-              <div style={{ margin: '20px 0px' }}>
-                <span style={{ fontWeight: 'bold' }}>Course Detail</span>
-              </div>
-              <div>
-                <Title />
-                <span style={{ marginLeft: '10px', marginBottom: '15px' }}>
-                  {newData && newData.heading}
-                </span>
-              </div>
-              <div>
-                <span style={{ fontWeight: 'bold' }}> Course category : </span>
-                <span style={{ marginLeft: '10px', marginBottom: '15px' }}>
-                  {newData && newData.category}
-                </span>
-              </div>
-              <div>
-                <span style={{ fontWeight: 'bold' }}> Course level : </span>
-                <span style={{ marginLeft: '10px', marginBottom: '15px' }}>
-                  {newData && newData.level}
-                </span>
-              </div>
-              <div>
-                <span style={{ fontWeight: 'bold' }}> Course Price : </span>
-                <span style={{ marginLeft: '10px', marginBottom: '15px' }}>
-                  {newData && newData.price}$
-                </span>
-              </div>
-              <div>
-                <span style={{ fontWeight: 'bold' }}>Course MaxStudent :</span>
-                <span style={{ marginLeft: '10px', marginBottom: '15px' }}>
-                  {newData && newData.maxStudent}
-                </span>
-              </div>
-              <div style={{ margin: '20px 0px' }}>
-                <span style={{ fontWeight: 'bold' }}>More Detail</span>
-              </div>
-              {newData && newData.enrolled && (
-                <div>
-                  <span style={{ fontWeight: 'bold' }}> enrolled : </span>
-                  <span>
-                    {newData && newData.enrolled} {'    '} students
-                  </span>
-                </div>
-              )}
-              {newData && newData.review && (
-                <div>
-                  <span style={{ fontWeight: 'bold' }}>
-                    {' '}
-                    number of Review :{' '}
-                  </span>
-                  <span>{newData && newData.review}</span>
-                </div>
-              )}
-              {newData && newData.star && (
-                <div>
-                  <span style={{ fontWeight: 'bold' }}> Rating Star : </span>
-                  <span>{newData && newData.star}</span>
-                </div>
-              )}
-              {newData && newData.lessons && (
-                <div style={{ marginBottom: '30px' }}>
-                  <span style={{ fontWeight: 'bold' }}> Lessons : </span>
-                  <span>{newData && newData.lessons}</span>
-                </div>
-              )}
-              {newData && newData.description && (
-                <div style={{ marginBottom: '30px' }}>
-                  <span style={{ fontWeight: 'bold' }}> Description : </span>
-                  <span>{newData && newData.description}</span>
-                </div>
-              )}
-              {newData && newData.learn && (
-                <div style={{ marginBottom: '30px' }}>
-                  <span style={{ fontWeight: 'bold' }}>
-                    What You gona learn :
-                  </span>
-                  <span>
-                    {newData &&
-                      newData.learn.map((data, index) => {
-                        const { point } = data
-                        return <div key={index}>{point}</div>
-                      })}
-                  </span>
-                </div>
-              )}
-              {newData && newData.requirement && (
-                <div style={{ marginBottom: '30px' }}>
-                  <span style={{ fontWeight: 'bold' }}>
-                    Requirement for this Course :
-                  </span>
-
-                  <span>
-                    {newData &&
-                      newData.requirement.map((data, index) => {
-                        const { point } = data
-                        return <div key={index}>{point}</div>
-                      })}
-                  </span>
-                </div>
-              )}
-              {newData && newData.target && (
-                <div style={{ marginBottom: '30px' }}>
-                  <span style={{ fontWeight: 'bold' }}>
-                    What is target of this course . :
-                  </span>
-
-                  <span>
-                    {newData &&
-                      newData.target.map((data, index) => {
-                        const { point } = data
-                        return <div key={index}>{point}</div>
-                      })}
-                  </span>
-                </div>
-              )}
-            </div>
+            <h2>Custumer</h2>
           </div>
-          <div>
-            <div style={{ marginBottom: '15px' }}>
-              <span style={{ fontWeight: 'bold' }}>edit</span>
-            </div>
-            <Formm
-              config={config}
-              id={id}
-              setNewData={setNewData}
-              Apis={Apis}
+          <div className={classes.fieldgrid}>
+            <TextField
+              id='outlined-basic'
+              label='Invoice Number'
+              variant='outlined'
+              name='invoiceNumber'
+              required
+              type='number'
+              value={invoiceNumber}
+              onChange={handleNumberChange}
+            />
+            <TextField
+              id='outlined-basic'
+              label='Ref Number'
+              name='refNumber'
+              variant='outlined'
+              type='number'
+              value={refNumber}
+              onChange={handleNumberChange}
             />
           </div>
         </div>
-      </div>
+        <br />
+        <br />
+        <br />
+        <div className={classes.items}>
+          <div style={{ textAlign: 'center', marginBottom: '30px' }}>
+            <h3>Items </h3>
+          </div>
+          <Formm />
+        </div>
+        <br />
+        <br />
+        <br />
+        <div className={classes.totalAll}>
+          <TextField
+            style={{ justifySelf: 'start', width: '80%' }}
+            id='outlined-basic'
+            label='Note'
+            variant='outlined'
+            value={note}
+            onChange={handleNoteChange}
+            multiline
+            rows={7}
+            rowsMax={12}
+            type='text'
+          />
+          <div className={classes.bordertotal}>
+            <div className={classes.childtotal}>
+              <span>Sub Items </span>
+              <h5>{total_items}</h5>
+            </div>
+            <Divider style={{ margin: '20px 0px' }} />
+            <div className={classes.childtotal}>
+              <span>Total Amount </span>
+              <h5>Rs {total_amount}</h5>
+            </div>
+          </div>
+        </div>
+        <br />
+      </section>
     </>
   )
 }
 
-export default User
+export default Hero

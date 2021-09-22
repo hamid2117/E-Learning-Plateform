@@ -6,23 +6,19 @@ import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Checkbox from '@material-ui/core/Checkbox'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
-import { useAuthContext } from './../../context/auth_context'
+import { useAuthContext } from './../../context/AuthContext'
 import { useCartContext } from './../../context/cart_context'
 import axios from 'axios'
 
 const validationSchema = yup.object({
-  firstName: yup
-    .string()
-    .min(3, 'Please enter your real Name')
-    .required('First Name is required'),
-  secondName: yup
-    .string()
-    .min(3, 'Please enter your real Name')
-    .required('Last Name is required'),
   address: yup
     .string()
     .min(5, 'Please enter your address in detail .')
     .required('Please enter you address.'),
+  debitCard: yup
+    .string()
+    .min(2, 'Please enter mention Debit Card owner .')
+    .required('Please enter Debit Card owner.'),
 })
 export default function AddressForm({
   handleNext,
@@ -32,7 +28,7 @@ export default function AddressForm({
 }) {
   const { userdata } = useAuthContext()
   const { shipAddress, shippingAddress } = useCartContext()
-  const { firstName, secondName } = userdata
+  const { email, address } = userdata
   const onSubmit = async (value) => {
     shipAddress(value)
     // const response = await axios
@@ -54,18 +50,12 @@ export default function AddressForm({
     //   }
     // }
   }
-  const {
-    firstName: sfirstName,
-    secondName: ssecondName,
-    address,
-  } = shippingAddress
+  const { email: semail, address: saddress } = shippingAddress
   const formik = useFormik({
     initialValues: {
-      firstName: sfirstName || firstName,
-      secondName: ssecondName || secondName,
-      address: address || '',
-      city: 'Bahawalpur',
-      postalCode: '63100',
+      email: semail || email,
+      address: saddress || address,
+      debitCard: '',
     },
     validateOnBlur: true,
     onSubmit,
@@ -79,63 +69,17 @@ export default function AddressForm({
   return (
     <>
       <Typography variant='h6' gutterBottom>
-        Shipping address
+        Billing Detail
       </Typography>
       <form action='submit'>
         <Grid container spacing={3}>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              required
-              id='firstName'
-              name='firstName'
-              error={
-                formik.touched.firstName && formik.errors.firstName
-                  ? true
-                  : false
-              }
-              helperText={
-                formik.touched.firstName && formik.errors.firstName
-                  ? formik.errors.firstName
-                  : null
-              }
-              value={formik.values.firstName}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              label='First name'
-              fullWidth
-              autoComplete='given-name'
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              required
-              id='secondName'
-              name='secondName'
-              error={
-                formik.touched.secondName && formik.errors.secondName
-                  ? true
-                  : false
-              }
-              helperText={
-                formik.touched.secondName && formik.errors.secondName
-                  ? formik.errors.secondName
-                  : null
-              }
-              onBlur={formik.handleBlur}
-              value={formik.values.secondName}
-              onChange={formik.handleChange}
-              label='Last name'
-              fullWidth
-              autoComplete='family-name'
-            />
-          </Grid>
           <Grid item xs={12}>
             <TextField
               required
               id='address'
               name='address'
               autoFocus='true'
-              placeholder='Model Town B Road, House # 38 , street # 18, Sarajia cloth house. '
+              placeholder={address}
               label='Address line '
               fullWidth
               autoComplete='shipping address-line1'
@@ -153,46 +97,15 @@ export default function AddressForm({
             />
           </Grid>
 
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12}>
             <TextField
               required
-              id='city'
-              name='city'
-              label='City'
-              value='Bahawalpur'
+              id='debitCard'
+              name='debitCard'
+              label='DebitCard Owner'
+              value={formik.values.debitCard}
+              onChange={formik.handleChange}
               fullWidth
-              autoComplete='shipping address-level2'
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              id='state'
-              name='state'
-              value='Punjab'
-              label='State/Province/Region'
-              fullWidth
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              required
-              id='postalCode'
-              name='postalCode'
-              value='63100'
-              label='Zip / Postal code'
-              fullWidth
-              autoComplete='shipping postal-code'
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              required
-              id='country'
-              name='country'
-              value='Pakistan'
-              label='Country'
-              fullWidth
-              autoComplete='shipping country'
             />
           </Grid>
           <Grid item xs={12}>
@@ -204,7 +117,7 @@ export default function AddressForm({
                   inputProps={{ 'aria-label': 'disabled checked checkbox' }}
                 />
               }
-              label='Use this address for payment details'
+              label='Payment with DebitCard and Paypal'
             />
           </Grid>
         </Grid>

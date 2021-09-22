@@ -1,5 +1,5 @@
-import React, { useEffect, useContext, useReducer } from 'react'
-import reducer from '../reducers/cart_reducer'
+import React, { useEffect, useContext, useReducer, createContext } from 'react'
+import reducer from '../reducer/cart_reducer'
 import {
   ADD_TO_CART,
   REMOVE_CART_ITEM,
@@ -31,20 +31,24 @@ const initialState = {
   cart: getLocalStorage(),
   total_items: 0,
   total_amount: 0,
-  shipping_fee: 50,
+  shipping_fee: 5,
   paymentMethod: 'card',
   shippingAddress: getAddressLocalStorage(),
   done: '',
 }
 
-const CartContext = React.createContext()
+const CartContext = createContext()
 
 export const CartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
 
-  const addToCart = (id, color, amount, product) => {
-    dispatch({ type: ADD_TO_CART, payload: { id, color, amount, product } })
+  const addToCart = (id, price, heading, duration, lessons, image) => {
+    dispatch({
+      type: ADD_TO_CART,
+      payload: { id, price, heading, duration, lessons, image },
+    })
   }
+
   useEffect(() => {
     dispatch({ type: COUNT_CART_TOTALS })
     localStorage.setItem('cartItems', JSON.stringify(state.cart))
@@ -68,9 +72,11 @@ export const CartProvider = ({ children }) => {
   const payMethod = (value) => {
     dispatch({ type: UPDATE_PAY, payload: value })
   }
+
   const shipAddress = (value) => {
     dispatch({ type: UPDATE_ADDRESS, payload: value })
   }
+
   const sendData = (token) => {
     dispatch({ type: SEND, payload: token })
   }

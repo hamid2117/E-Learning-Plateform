@@ -6,7 +6,7 @@ export const CLEAR_CART = 'CLEAR_CART'
 export const COUNT_CART_TOTALS = 'COUNT_CART_TOTALS'
 export const UPDATE_PAY = 'UPDATE_PAY'
 export const UPDATE_ADDRESS = 'UPDATE_ADDRESS'
-
+export const SEND = 'SEND'
 //*AUTH context
 export const AUTH_USER = 'AUTH_USER'
 export const LOGOUT = 'LOGOUT'

@@ -13,29 +13,19 @@ import {
 const cart_reducer = (state, action) => {
   switch (action.type) {
     case ADD_TO_CART:
-      const { id, amount, product } = action.payload
+      const { id, price, heading, duration, lessons, image } = action.payload
       const temProduct = state.cart.find((data) => data.id === id)
       if (temProduct) {
-        const newCartItem = state.cart.map((data) => {
-          const newData = data.id === id
-          if (newData) {
-            let newAmount = data.amount + amount
-            if (newAmount > data.max) {
-              newAmount = data.max
-            }
-            return { ...data, amount: newAmount }
-          } else {
-            return data
-          }
-        })
-        return { ...state, cart: newCartItem }
+        return { ...state, cart: [...state.cart] }
       } else {
         const newItem = {
           id,
-          name: product.name,
-          amount,
-          image: product.image,
-          price: product.price,
+          price,
+          heading,
+          duration,
+          lessons,
+          image,
+          amount: 1,
         }
         return { ...state, cart: [...state.cart, newItem] }
       }

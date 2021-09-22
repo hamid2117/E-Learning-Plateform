@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
 import LocalAtmIcon from '@material-ui/icons/LocalAtm'
 import CreditCardIcon from '@material-ui/icons/CreditCard'
-import { useAuthContext } from './../../context/auth_context'
+import { useAuthContext } from './../../context/AuthContext'
 import axios from 'axios'
 import { useCartContext } from './../../context/cart_context'
 const products = [
@@ -103,12 +103,8 @@ export default function Review({ handleNext, activeStep, steps, handleBack }) {
           <Typography variant='h6' gutterBottom className={classes.title}>
             Shipping
           </Typography>
-          <Typography gutterBottom>
-            {shippingAddress.firstName} {shippingAddress.secondName}
-          </Typography>
-          <Typography gutterBottom>
-            {shippingAddress.address},{shippingAddress.city}
-          </Typography>
+          <Typography gutterBottom>{shippingAddress.debitCard}</Typography>
+          <Typography gutterBottom>{shippingAddress.address}</Typography>
         </Grid>
         <Grid item container direction='column' xs={12} sm={6}>
           <Typography variant='h6' gutterBottom className={classes.title}>

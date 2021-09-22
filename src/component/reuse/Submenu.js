@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { useUiContext } from '../../context/Uicontext'
-
+import { Link } from 'react-router-dom'
+import { Button } from '@material-ui/core'
 const Submenu = () => {
   const {
     isSubmenuOpen,
@@ -33,10 +34,10 @@ const Submenu = () => {
           {links.map((link, index) => {
             const { url, icon, label } = link
             return (
-              <a key={index} href={url}>
+              <Link key={index} to={url}>
                 {icon}
                 {label}
-              </a>
+              </Link>
             )
           })}
         </div>

@@ -192,3 +192,100 @@ const Formm = ({ config, id, setNewData, Apis }) => {
   )
 }
 export default Formm
+// import React from 'react'
+// import 'date-fns'
+// import { makeStyles } from '@material-ui/core/styles'
+// import { Button, TextField, Divider, IconButton } from '@material-ui/core'
+// import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket'
+// import { useGlobalContext } from '../../../../context/UpdateContext'
+// import DeleteForeverIcon from '@material-ui/icons/DeleteForever'
+
+// const useStyles = makeStyles((theme) => ({
+//   gridItem: {
+//     display: 'grid',
+//     gridTemplateColumns: '30% 10% 15% 15% 6% 15%',
+//     gap: '20px 30px',
+//     marginBottom: '20px',
+//   },
+// }))
+
+// const NewItem = () => {
+//   const classes = useStyles()
+//   const { AddItem_Cart, itemCart, Delete_Cart, handleChangeItem } =
+//     useGlobalContext()
+
+//   return (
+//     <>
+//       {itemCart.map((data, index) => {
+//         const { id, Name, Quantity, Price, Discount, Amount } = data
+//         return (
+//           <>
+//             <form key={index} className={classes.gridItem}>
+//               <TextField
+//                 id={id}
+//                 required
+//                 label='Name of Item'
+//                 variant='outlined'
+//                 name='Name'
+//                 type='text'
+//                 value={Name}
+//                 onChange={handleChangeItem}
+//               />
+//               <TextField
+//                 id={id}
+//                 name='Quantity'
+//                 label='Quantity'
+//                 variant='outlined'
+//                 required
+//                 type='number'
+//                 value={Quantity}
+//                 onChange={handleChangeItem}
+//               />
+//               <TextField
+//                 id={id}
+//                 label='Pirce'
+//                 name='Price'
+//                 variant='outlined'
+//                 required
+//                 type='number'
+//                 onChange={handleChangeItem}
+//                 value={Price}
+//               />
+//               <TextField
+//                 id={id}
+//                 label='Discount'
+//                 name='Discount'
+//                 variant='outlined'
+//                 required
+//                 type='number'
+//                 value={Discount}
+//                 onChange={handleChangeItem}
+//               />
+//               <div>
+//                 <span>Amount : </span>
+//                 <h5>{Amount}Rs</h5>
+//               </div>
+//               {itemCart.length !== 1 && (
+//                 <div>
+//                   <IconButton onClick={() => Delete_Cart(id)}>
+//                     <DeleteForeverIcon />
+//                   </IconButton>
+//                 </div>
+//               )}
+//             </form>
+//             <Divider style={{ marginBottom: '20px' }} />
+//           </>
+//         )
+//       })}
+//       <Button
+//         style={{ width: '100%' }}
+//         startIcon={<ShoppingBasketIcon />}
+//         onClick={() => AddItem_Cart()}
+//       >
+//         Add a Item
+//       </Button>
+//     </>
+//   )
+// }
+
+// export default NewItem

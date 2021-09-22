@@ -7,8 +7,8 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 import BasketData from './BasketData'
-import { useCartContext } from './../../context/cart_context'
-import { useAuthContext } from '../../context/auth_context'
+import { useCartContext } from '../../context/cart_context'
+import { useAuthContext } from '../../context/AuthContext'
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -149,7 +149,7 @@ const BasketPage = () => {
           component={Link}
           variant='contained'
           color='secondary'
-          to='/product'
+          to='/course'
         >
           Fill it
         </Button>
@@ -165,7 +165,7 @@ const BasketPage = () => {
         <div className={classes.itemstitle}>
           {!matches && (
             <List className={classes.listsss}>
-              {['Item', 'Price', 'Quantity', 'Subtotal'].map((text, index) => {
+              {['Course', 'Price', 'Lessons', 'Subtotal'].map((text, index) => {
                 return (
                   <ListItem key={index} style={{ textAlign: 'center' }}>
                     <ListItemText primary={text} />
@@ -192,7 +192,7 @@ const BasketPage = () => {
             variant='contained'
             color='primary'
             component={Link}
-            to='/Product'
+            to='/course'
           >
             {matchess ? 'C.Shopping' : 'Continue Shopping'}
           </Button>
@@ -209,10 +209,10 @@ const BasketPage = () => {
         <div>
           <article className={classes.checkoutBox}>
             <h5 className={classes.textss}>
-              Subtotal :<span>{total_amount}rs</span>
+              Subtotal :<span>{total_amount}$</span>
             </h5>
             <p className={classes.textss}>
-              shipping_fee :<span>{shipping_fee}rs</span>
+              Tax :<span>{shipping_fee}$</span>
             </p>
             <Divider />
             <h4

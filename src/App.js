@@ -16,6 +16,8 @@ import {
   Tcourselist,
   Contact,
   About,
+  Basket,
+  Checkout,
 } from './pages'
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom'
 import { Navbar, Header, Footer, Sidebar, Submenu } from './component/reuse'
@@ -72,6 +74,9 @@ const App = () => {
             <Route exact path='/about'>
               <About />
             </Route>
+            <Route exact path='/basket'>
+              <Basket />
+            </Route>
             <Route exact path='/useredit/:id'>
               <UserEdit />
             </Route>
@@ -83,6 +88,9 @@ const App = () => {
             </Route>
             <Route exact path='/course'>
               <Course />
+            </Route>
+            <Route exact path='/checkout'>
+              <Checkout />
             </Route>
             <Route exact path='/tcourselist'>
               <Tcourselist />

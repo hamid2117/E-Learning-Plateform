@@ -11,7 +11,7 @@ import UserIcon from '@material-ui/icons/PermIdentity'
 import LanguageIcon from '@material-ui/icons/GTranslate'
 import StarIcon from '@material-ui/icons/Stars'
 import Check from '../../img/check.png'
-
+import { useCartContext } from '../../context/cart_context'
 const useStyles = makeStyles((theme) => ({
   main: {
     width: '100%',
@@ -87,11 +87,15 @@ const HomePage = ({
   duration,
   language,
   maxStudent,
+  _id,
   requirement,
   target,
   material,
+  image,
+  heading,
 }) => {
   const classes = useStyles()
+  const { addToCart } = useCartContext()
 
   return (
     <>
@@ -99,7 +103,14 @@ const HomePage = ({
         <div className={classes.fistdiv}>
           <div className={classes.heading}>
             <h4>${price}.00</h4>
-            <Button variant='contained' color='primary' className={classes.btn}>
+            <Button
+              variant='contained'
+              color='primary'
+              onClick={() =>
+                addToCart(_id, price, heading, duration, lessons, image)
+              }
+              className={classes.btn}
+            >
               Add to Card
             </Button>
           </div>

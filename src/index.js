@@ -7,15 +7,21 @@ import { AppProvider } from './context/Uicontext'
 import { AuthProvider } from './context/AuthContext'
 import { AdminUiProvider } from './context/DashboardContext'
 import { FilterProvider } from './context/FilterContext'
+import { CartProvider } from './context/cart_context'
+import { UpdateProvider } from './context/courseContext'
 ReactDOM.render(
   <React.StrictMode>
     <AuthProvider>
       <AdminUiProvider>
-        <FilterProvider>
-          <AppProvider>
-            <App />
-          </AppProvider>
-        </FilterProvider>
+        <UpdateProvider>
+          <CartProvider>
+            <FilterProvider>
+              <AppProvider>
+                <App />
+              </AppProvider>
+            </FilterProvider>
+          </CartProvider>
+        </UpdateProvider>
       </AdminUiProvider>
     </AuthProvider>
   </React.StrictMode>,
