@@ -8,7 +8,7 @@ import React, {
 import reducer from './../reducer/update_reducer'
 import axios from 'axios'
 import { useAuthContext } from './AuthContext'
-
+import { toast } from 'react-toastify'
 const DashboardContext = createContext()
 
 const initialState = {
@@ -61,6 +61,7 @@ const initialState = {
     },
   ],
 }
+
 export const UpdateProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
   const { userdata } = useAuthContext()
@@ -185,10 +186,12 @@ export const UpdateProvider = ({ children }) => {
         config
       )
       if (response) {
-        setSuccess(true)
+        // setSuccess(true)
+        toast.success('Course data is updated')
       }
     } catch (error) {
       console.log(error)
+      toast.error('system problem occured')
     }
   }
   // useEffect(() => {

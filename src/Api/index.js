@@ -1,9 +1,10 @@
 //* Api for Developer
 
-export const LoginApi = 'http://localhost:5000/api/v1/login'
-export const RegisterApi = 'http://localhost:5000/api/v1/register'
-export const ForgetPassword = 'http://localhost:5000/api/v1/forgetPassword'
-export const Apis = 'http://localhost:5000/api/v1/'
-// /updatepassword/:token
-// export const
+export const LoginApi = 'https://glacial-everglades-90519.herokuapp.com/login'
+export const RegisterApi =
+  'https://glacial-everglades-90519.herokuapp.com/register'
+export const ForgetPassword =
+  'https://glacial-everglades-90519.herokuapp.com/forgetPassword'
+export const Apis = 'https://glacial-everglades-90519.herokuapp.com/'
+
 //* Api for production

@@ -46,7 +46,7 @@ const CourseData = () => {
                   required
                   label='Course Chapter title '
                   variant='outlined'
-                  name='point'
+                  name='heading'
                   type='text'
                   value={heading}
                   onChange={handleChangeCourse}

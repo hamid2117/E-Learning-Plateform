@@ -44,7 +44,6 @@ const dashboardReducer = (state, action) => {
       }
       return { ...state, learn: [...state.learn, newItem] }
     case 'DELETE_CART':
-      console.log(action.payload)
       const newItemm = state.learn.filter((data) => data._id !== action.payload)
       return { ...state, learn: newItemm }
 
@@ -162,7 +161,6 @@ const dashboardReducer = (state, action) => {
         }
         return data
       })
-
       return { ...state, courseData: newCourse }
     case 'HANDLEVIDEOCHANGE':
       let newCourseses = state.courseData.map((data) => {
@@ -190,6 +188,7 @@ const dashboardReducer = (state, action) => {
         link: '',
         heading: '',
       }
+
       let newCourseVideo = state.courseData.map((data) => {
         if (data._id == action.dispatch) {
           return { ...data, video: [...data.video, newVIDEO] }
@@ -197,6 +196,7 @@ const dashboardReducer = (state, action) => {
         return data
       })
       return { ...state, courseData: newCourseVideo }
+
     case 'DELETE_VIDEO':
       const newVideo = state.courseData.map((data) => {
         const newVideoss = data.video.filter(
@@ -205,6 +205,7 @@ const dashboardReducer = (state, action) => {
         return { ...data, video: newVideoss }
       })
       return { ...state, courseData: newVideo }
+
     case 'HANDLEDUE':
       return { ...state, invoiceDate: action.dispatch }
     case 'HANDLEINVOICE':
