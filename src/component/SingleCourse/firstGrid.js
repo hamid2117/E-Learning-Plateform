@@ -84,6 +84,7 @@ const HomePage = ({
   learn,
   courseData,
 }) => {
+  console.log(image)
   const classes = useStyles()
   const temStar = Array.from({ length: 5 }, (_, index) => {
     const number = index + 0.5

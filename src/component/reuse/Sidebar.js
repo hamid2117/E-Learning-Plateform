@@ -2,6 +2,7 @@ import React from 'react'
 import CloseIcon from '@material-ui/icons/Close'
 import { useUiContext } from '../../context/Uicontext'
 import sublinks from './navdata'
+import { Link } from 'react-router-dom'
 const Sidebar = () => {
   const { isSidebarOpen, closeSidebar } = useUiContext()
   return (
@@ -24,10 +25,10 @@ const Sidebar = () => {
                   {links.map((link, index) => {
                     const { url, icon, label } = link
                     return (
-                      <a key={index} href={url}>
+                      <Link key={index} to={url} onClick={closeSidebar}>
                         {icon}
                         {label}
-                      </a>
+                      </Link>
                     )
                   })}
                 </div>

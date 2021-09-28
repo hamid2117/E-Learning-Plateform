@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'grid',
     gridTemplateColumns: '1fr 1fr 1fr 1fr auto',
     '@media (max-width: 800px)': {
-      gridTemplateColumns: '40% 45% 15%',
+      gridTemplateColumns: '49% 36% 15%',
     },
     gridTemplateRows: '75px',
     margin: '50px 0px',

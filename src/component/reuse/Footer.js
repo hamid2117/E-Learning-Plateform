@@ -1,7 +1,7 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { IconButton, Button, Divider } from '@material-ui/core'
-import Logo from '../../img/whiteLogo.png'
+import Logo from '../../img/whitelogo.png'
 import { FooterData, links, Courses, Featured } from './FooterData'
 import AccessTimeIcon from '@material-ui/icons/AccessTime'
 import { social } from '../../DummyData'

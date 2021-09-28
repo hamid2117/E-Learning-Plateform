@@ -9,7 +9,9 @@ const useStyles = makeStyles((theme) => ({
     height: '400px',
     display: 'grid',
     gridTemplateColumns: '1fr 1fr',
-    '@media (max-width: 768px)': {},
+    '@media (max-width: 768px)': {
+      gridTemplateColumns: '1fr',
+    },
   },
   grid1: {
     display: 'grid',

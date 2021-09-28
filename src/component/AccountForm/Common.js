@@ -132,9 +132,9 @@ export default function SignIn({ changeExpand, changeExpandForget }) {
             margin='normal'
             required
             fullWidth
-            onBlur={formik.handleBlur}
             value={formik.values.email}
             onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
             helperText={
               formik.touched.email && formik.errors.email
                 ? formik.errors.email

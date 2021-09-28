@@ -15,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'grid',
     '@media (max-width: 800px)': {
       height: '128vh',
+      marginTop: '150px',
     },
     placeItems: 'center',
   },
@@ -44,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
   backdrop: {
     width: '115%',
     height: '538px',
-    zIndex: '9',
+    zIndex: '7',
     position: 'absolute',
     display: 'flex',
     flexDirection: 'column',
@@ -67,14 +68,14 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: '600',
     lineHeight: '1.24',
     color: 'white',
-    zIndex: '10',
+    zIndex: '8',
     margin: '0',
   },
   smallText: {
     color: 'white',
     fontWeight: '500',
     fontSize: '11px',
-    zIndex: '10',
+    zIndex: '8',
     margin: '0',
     marginTop: '7px',
   },

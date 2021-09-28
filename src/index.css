@@ -1245,6 +1245,7 @@ Stripe Styles
 
 .sidebar {
   width: 90vw;
+  z-index: 9;
   height: 95vh;
   max-width: var(--fixed-width);
   background: var(--clr-white);
@@ -1302,7 +1303,7 @@ Stripe Styles
   top: 4rem;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 3;
+    z-index: 9;
   display: none;
   padding: 2rem;
   border-radius: var(--radius);
@@ -1325,6 +1326,8 @@ Stripe Styles
 
 .submenu.show {
   display: block;
+  z-index: 9;
+
 }
 
 .submenu-center {

@@ -6,16 +6,17 @@ import { useFilterContext } from '../../context/FilterContext'
 const useStyles = makeStyles((theme) => ({
   main: {
     width: '100%',
-    height: '800px',
-    margin: '0px auto',
+    height: '100%',
+    margin: '40px auto',
+    marginBottom: '100px',
     maxWidth: '1200px',
     '@media (max-width: 768px)': {
       maxWidth: '95%',
-      height: '1700px',
+      height: '100%',
     },
     '@media (max-width: 500px)': {
       maxWidth: '95%',
-      height: '2800px',
+      height: '100%',
     },
   },
   heading: {

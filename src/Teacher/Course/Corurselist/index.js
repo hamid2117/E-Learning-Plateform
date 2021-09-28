@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Button } from '@material-ui/core'
 import AddIcon from '@material-ui/icons/Add'
@@ -6,9 +6,10 @@ import { useAdminUiContext } from '../../../context/DashboardContext'
 import { useAuthContext } from '../../../context/AuthContext'
 import NewCourse from './NewCourse'
 import Userlist from './List'
+import { Redirect } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 const useStyles = makeStyles((theme) => ({
-  main: {},
   main2: {
     height: '80vh',
     display: 'grid',
@@ -39,6 +40,15 @@ const App = () => {
   const classes = useStyles()
   const { userdata } = useAuthContext()
   const { adminCloseCourse, adminOpenCourse, adminCourse } = useAdminUiContext()
+
+  useEffect(() => {
+    !userdata.teacher && toast.error('This Page is only for teacher')
+  }, [])
+
+  if (!userdata.teacher) {
+    return <Redirect to='/' />
+  }
+
   return (
     <section className={classes.main2}>
       <main className={classes.main}>

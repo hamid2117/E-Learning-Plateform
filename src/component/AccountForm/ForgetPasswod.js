@@ -22,6 +22,13 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
   },
+  main1: {
+    maxWidth: '400px',
+    '@media (max-width: 500px)': {
+      maxWidth: '300px',
+      padding: '0px 30px',
+    },
+  },
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
@@ -41,6 +48,9 @@ const useStyles = makeStyles((theme) => ({
     '@media (max-width: 500px)': {
       marginTop: '17px',
     },
+  },
+  textt: {
+    '@media (max-width: 500px)': {},
   },
 }))
 const validationSchema = yup.object({
@@ -90,7 +100,7 @@ export default function SignIn({ changeExpands }) {
   }, [redirect])
 
   return (
-    <Container component='main' style={{ maxWidth: '400px' }}>
+    <Container component='main' className={classes.main1}>
       <CssBaseline />
       <div className={classes.paper}>
         <form className={classes.form} onSubmit={formik.handleSubmit}>
@@ -118,7 +128,7 @@ export default function SignIn({ changeExpands }) {
             label='Email Address'
             name='email'
             autoComplete='email'
-            style={{ paddign: 10, width: '355px' }}
+            className={classes.textt}
             autoFocus
           />
 
