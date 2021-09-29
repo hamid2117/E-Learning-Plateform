@@ -68,14 +68,14 @@ const Order = ({ userdata }) => {
   return (
     <>
       <div className={classes.each}>
-        <h2>Your Order Status</h2>
+        <h2>Your Course Status</h2>
         <p>
-          Once you place an order with us, you'll be able to track its status
+          Once you buy an Course with us, you'll be able to track its status
           here.
         </p>
 
         {data.length === 0 ? (
-          <h5>There is no order to show </h5>
+          <h5>There is no Course to show </h5>
         ) : (
           data && sdkdata && <OrderTable data={data} />
         )}

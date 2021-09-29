@@ -6,6 +6,7 @@ import { Paper } from '@material-ui/core'
 import Common from './Common'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 import ForgetPassword from './ForgetPasswod'
+import { useUiContext } from '../../context/Uicontext'
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -127,6 +128,7 @@ const expandingTransition = {
 }
 const Login = () => {
   const [isExpand, setIsExpand] = React.useState(false)
+  const { closeSubmenu } = useUiContext()
   const [active, setActive] = React.useState('ups')
   const classes = useStyles()
   const matches = useMediaQuery('(max-width:786px)')
@@ -159,7 +161,7 @@ const Login = () => {
     }, 830)
   }
   return (
-    <div className={classes.main}>
+    <div className={classes.main} onMouseOver={closeSubmenu}>
       <Paper elevation={3} className={classes.BoxContainer}>
         <div className={classes.TopContainer}>
           <motion.div
