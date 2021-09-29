@@ -183,11 +183,7 @@ const Navbar = () => {
           </div>
           <ul className='nav-links'>
             <li>
-              <button
-                className='link-btn'
-                onMouseOut={closeSubmenu}
-                onMouseOver={displaySubmenu}
-              >
+              <button className='link-btn' onMouseOver={displaySubmenu}>
                 courses
               </button>
             </li>

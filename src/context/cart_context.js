@@ -78,6 +78,7 @@ export const CartProvider = ({ children }) => {
   }
 
   const sendData = (token) => {
+    localStorage.removeItem('cartItems')
     dispatch({ type: SEND, payload: token })
   }
 

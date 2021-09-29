@@ -4,7 +4,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery'
 import OrderTable from './OrderTable'
 import axios from 'axios'
 import { useAuthContext } from '../..//context/AuthContext'
-
+import { Apis } from '../../Api'
 const useStyles = makeStyles((theme) => ({
   main: {
     '@media (max-width: 600px)': {
@@ -45,7 +45,7 @@ const Order = ({ userdata }) => {
   }
   const getData = async () => {
     const response = await axios
-      .get('http://localhost:5000/api/v1/order/myorders', config)
+      .get(`${Apis}myorders`, config)
 
       .catch((e) => {
         if (e && e.response) {
@@ -58,6 +58,7 @@ const Order = ({ userdata }) => {
         }
       })
     if (response && response.data) {
+      console.log(response.data)
       setData(response.data)
       setSdkdata(true)
     }

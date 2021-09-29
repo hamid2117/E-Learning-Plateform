@@ -20,7 +20,7 @@ export default function PaymentForm({ handleNext, activeStep, handleBack }) {
   }
 
   const formik = useFormik({
-    initialValues: { paymentMethod: paymentMethod || 'cash' },
+    initialValues: { paymentMethod: paymentMethod || 'card' },
     onSubmit,
   })
 

@@ -16,7 +16,9 @@ import {
   Tcourselist,
   Contact,
   About,
+  Order,
   Basket,
+  Video,
   Checkout,
 } from './pages'
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom'
@@ -70,6 +72,12 @@ const App = () => {
             </Route>
             <Route exact path='/dashboard'>
               <UserDashboard />
+            </Route>
+            <Route exact path='/video'>
+              <Video />
+            </Route>
+            <Route exact path='/order/:id'>
+              <Order />
             </Route>
             <Route exact path='/about'>
               <About />

@@ -85,7 +85,7 @@ export default function Review({ handleNext, activeStep, steps, handleBack }) {
       <List disablePadding>
         {cart.map((product, index) => (
           <ListItem className={classes.listItem} key={index}>
-            <ListItemText primary={product.name} secondary={product.color} />
+            <ListItemText primary={product.heading} />
             <Typography variant='body2'>
               {product.amount} x {product.price}rs
             </Typography>
@@ -101,7 +101,7 @@ export default function Review({ handleNext, activeStep, steps, handleBack }) {
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
           <Typography variant='h6' gutterBottom className={classes.title}>
-            Shipping
+            Billing
           </Typography>
           <Typography gutterBottom>{shippingAddress.debitCard}</Typography>
           <Typography gutterBottom>{shippingAddress.address}</Typography>

@@ -117,7 +117,7 @@ export default function AddressForm({
                   inputProps={{ 'aria-label': 'disabled checked checkbox' }}
                 />
               }
-              label='Payment with DebitCard and Paypal'
+              label='Payment with DebitCard'
             />
           </Grid>
         </Grid>

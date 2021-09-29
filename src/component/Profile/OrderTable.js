@@ -38,7 +38,7 @@ function createData(name, calories, fat, carbs, protein) {
 
 const useStyles = makeStyles({
   table: {
-    minWidth: 700,
+    minWidth: 600,
   },
 })
 
@@ -55,14 +55,12 @@ export default function CustomizedTables({ data }) {
         <TableHead>
           <TableRow>
             {matches
-              ? ['Id', 'Delivered', ''].map((text, index) => {
+              ? ['Id', 'Paid', ''].map((text, index) => {
                   return <StyledTableCell key={index}>{text}</StyledTableCell>
                 })
-              : ['Id', 'Date', 'Total', 'Paid', 'Delivered', ''].map(
-                  (text, index) => {
-                    return <StyledTableCell key={index}>{text}</StyledTableCell>
-                  }
-                )}
+              : ['Id', 'Date', 'Total', 'Paid', ''].map((text, index) => {
+                  return <StyledTableCell key={index}>{text}</StyledTableCell>
+                })}
           </TableRow>
         </TableHead>
         <TableBody>
@@ -92,10 +90,10 @@ export default function CustomizedTables({ data }) {
                     )}
                   </StyledTableCell>
                 )}
-                {!matches && (
+                {matches && (
                   <StyledTableCell>
-                    {row.isDelivered ? (
-                      <DoneIcon style={{ fontSize: '30px', color: 'green' }} />
+                    {row.paidAt ? (
+                      row.paidAt.substring(0, 10)
                     ) : (
                       <CloseIcon
                         color='secondary'
@@ -119,18 +117,6 @@ export default function CustomizedTables({ data }) {
                     </Button>
                   )}
                 </StyledTableCell>
-                {matches && (
-                  <StyledTableCell>
-                    {row.isDelivered ? (
-                      <DoneIcon style={{ fontSize: '30px', color: 'green' }} />
-                    ) : (
-                      <CloseIcon
-                        color='secondary'
-                        style={{ fontSize: '30px' }}
-                      />
-                    )}
-                  </StyledTableCell>
-                )}
               </StyledTableRow>
             ))}
         </TableBody>

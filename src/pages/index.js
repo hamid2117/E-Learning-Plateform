@@ -14,6 +14,8 @@ import Contact from './ContactPage'
 import About from './AboutPage'
 import Checkout from './CheckoutPage'
 import Basket from './BasketPage'
+import Video from './VideoPage'
+import Order from './OrderPage'
 export {
   Home,
   UserDashboard,
@@ -31,4 +33,6 @@ export {
   About,
   Basket,
   Checkout,
+  Video,
+  Order,
 }
