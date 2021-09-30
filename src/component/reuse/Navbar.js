@@ -14,12 +14,11 @@ import { useCartContext } from '../../context/cart_context'
 const Navbar = () => {
   const { openSidebar, openSubmenu, closeSubmenu } = useUiContext()
   const matches = useMediaQuery('(max-width:800px)')
-  // const matches = useMediaQuery('(max-width:800px)')
   const { logout, userdata } = useAuthContext()
-  const [anchorEl, setAnchorEl] = React.useState(null)
   const location = useLocation()
   const { total_items } = useCartContext()
 
+  const [anchorEl, setAnchorEl] = React.useState(null)
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget)
   }
@@ -198,52 +197,59 @@ const Navbar = () => {
               </button>
             </li>
           </ul>
-
-          {userdata.email ? (
-            <>
-              <Button
-                aria-controls='simple-menu'
-                aria-haspopup='true'
-                onClick={handleClick}
-                endIcon={<ExpandIcon />}
-              >
-                {userdata.name}
-              </Button>
-              <Menu
-                id='simple-menu'
-                anchorEl={anchorEl}
-                keepMounted
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
-              >
-                <MenuItem component={Link} to='/profile' onClick={handleClose}>
-                  Profile{' '}
-                </MenuItem>
-                {userdata.isAdmin && (
-                  <MenuItem
-                    component={Link}
-                    to='/dashboard'
-                    onClick={handleClose}
+          {!matches && (
+            <div>
+              {userdata.email ? (
+                <>
+                  <Button
+                    aria-controls='simple-menu'
+                    aria-haspopup='true'
+                    onClick={handleClick}
+                    endIcon={<ExpandIcon />}
                   >
-                    Dashboard
-                  </MenuItem>
-                )}
-                {userdata.teacher && (
-                  <MenuItem
-                    component={Link}
-                    to='/tcourselist'
-                    onClick={handleClose}
+                    {userdata.name}
+                  </Button>
+                  <Menu
+                    id='simple-menu'
+                    anchorEl={anchorEl}
+                    keepMounted
+                    open={Boolean(anchorEl)}
+                    onClose={handleClose}
                   >
-                    My dashboard
-                  </MenuItem>
-                )}
-                <MenuItem onClick={handleLogout}>Logout </MenuItem>
-              </Menu>
-            </>
-          ) : (
-            <Link to='/account' className='btn signin-btn'>
-              Sign in
-            </Link>
+                    <MenuItem
+                      component={Link}
+                      to='/profile'
+                      onClick={handleClose}
+                    >
+                      Profile{' '}
+                    </MenuItem>
+                    {userdata.isAdmin && (
+                      <MenuItem
+                        component={Link}
+                        to='/dashboard'
+                        onClick={handleClose}
+                      >
+                        Dashboard
+                      </MenuItem>
+                    )}
+                    {userdata.teacher && (
+                      <MenuItem
+                        component={Link}
+                        to='/tcourselist'
+                        onClick={handleClose}
+                      >
+                        My dashboard
+                      </MenuItem>
+                    )}
+                    <MenuItem onClick={handleLogout}>Logout </MenuItem>
+                  </Menu>
+                </>
+              ) : (
+                <Link to='/account' className='btn signin-btn'>
+                  Sign in
+                </Link>
+              )}
+            </div>
           )}
         </div>
       </nav>

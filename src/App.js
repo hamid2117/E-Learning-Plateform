@@ -24,6 +24,7 @@ import {
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom'
 import { Navbar, Header, Footer, Sidebar, Submenu } from './component/reuse'
 import { ToastContainer, toast } from 'react-toastify'
+import LoginedRouter from './utils/LoginedRouter'
 
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -115,9 +116,9 @@ const App = () => {
             <Route exact path='/contact'>
               <Contact />
             </Route>
-            <Route exact path='/account'>
+            <LoginedRouter exact path='/account'>
               <Account />
-            </Route>
+            </LoginedRouter>
             <Route path='*'>
               <Error />
             </Route>

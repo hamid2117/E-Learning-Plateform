@@ -7,6 +7,7 @@ import AccessTimeIcon from '@material-ui/icons/AccessTime'
 import { social } from '../../DummyData'
 import { useLocation } from 'react-router-dom'
 import { useAuthContext } from '../../context/AuthContext'
+import { Link } from 'react-router-dom'
 const useStyles = makeStyles({
   main: {
     width: '100%',
@@ -204,18 +205,20 @@ const Footer = () => {
               <h4>Links</h4>
             </div>
             {links.map((data) => {
-              const { heading, id } = data
+              const { heading, id, link } = data
               return (
                 <div key={id}>
-                  <h5
-                    style={{
-                      fontWeight: '300',
-                      color: '#aeb2c2',
-                      marginBottom: '35px',
-                    }}
-                  >
-                    {heading}
-                  </h5>
+                  <Link to={link}>
+                    <h5
+                      style={{
+                        fontWeight: '300',
+                        color: '#aeb2c2',
+                        marginBottom: '35px',
+                      }}
+                    >
+                      {heading}
+                    </h5>
+                  </Link>
                 </div>
               )
             })}
@@ -225,18 +228,20 @@ const Footer = () => {
               <h4>Courses</h4>
             </div>
             {Courses.map((data) => {
-              const { heading, id } = data
+              const { heading, id, link } = data
               return (
                 <div key={id}>
-                  <h5
-                    style={{
-                      color: '#aeb2c2',
-                      fontWeight: '300',
-                      marginBottom: '35px',
-                    }}
-                  >
-                    {heading}
-                  </h5>
+                  <Link to={link}>
+                    <h5
+                      style={{
+                        color: '#aeb2c2',
+                        fontWeight: '300',
+                        marginBottom: '35px',
+                      }}
+                    >
+                      {heading}
+                    </h5>
+                  </Link>
                 </div>
               )
             })}
@@ -246,13 +251,14 @@ const Footer = () => {
               <h4>Featured Posts</h4>
             </div>
             {Featured.map((data) => {
-              const { heading, id, image, time } = data
+              const { heading, id, image, time, link } = data
               return (
                 <div key={id}>
                   <div className={classes.featuredchild}>
                     <img src={image} alt='Image' />
                     <div className={classes.heading}>
-                      <div
+                      <Link
+                        to={link}
                         style={{
                           display: 'grid',
                           gridTemplateColumns: '15% 85%',
@@ -272,7 +278,7 @@ const Footer = () => {
                         >
                           {time}
                         </p>
-                      </div>
+                      </Link>
                       <h5>{heading}</h5>
                     </div>
                   </div>

@@ -9,6 +9,7 @@ import reducer from './../reducer/update_reducer'
 import axios from 'axios'
 import { useAuthContext } from './AuthContext'
 import { toast } from 'react-toastify'
+import { Apis } from '../Api'
 const DashboardContext = createContext()
 
 const initialState = {
@@ -148,9 +149,6 @@ export const UpdateProvider = ({ children }) => {
     const name = e.target.name
     const value = e.target.value
     const id = e.target.id
-    console.log(name, value, id)
-    console.log('sdfasdfasdf')
-    console.log(courseId)
     dispatch({
       type: 'HANDLEVIDEOCHANGE',
       dispatch: { name, value, id, courseId },
@@ -170,10 +168,7 @@ export const UpdateProvider = ({ children }) => {
 
   const handleDataId = async (id) => {
     try {
-      const response = await axios.get(
-        `http://localhost:5000/api/v1/course/${id}`,
-        config
-      )
+      const response = await axios.get(`${Apis}course/${id}`, config)
       if (response) {
         dispatch({ type: 'HANDLE_DATA', payload: response.data })
       }
@@ -183,11 +178,7 @@ export const UpdateProvider = ({ children }) => {
   }
   const handleUpdateSubmit = async (id) => {
     try {
-      const response = await axios.put(
-        `http://localhost:5000/api/v1/course/${id}`,
-        state,
-        config
-      )
+      const response = await axios.put(`${Apis}course/${id}`, state, config)
       if (response) {
         // setSuccess(true)
         toast.success('Course data is updated')

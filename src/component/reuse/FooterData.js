@@ -26,23 +26,28 @@ export const FooterData = [
 export const links = [
   {
     id: 1,
-    heading: 'About',
+    heading: 'Home',
+    link: '/',
   },
   {
     id: 2,
-    heading: 'Overview',
+    heading: 'Basket',
+    link: '/basket',
   },
   {
     id: 3,
-    heading: 'Teacher',
+    heading: 'Account',
+    link: '/account',
   },
   {
     id: 4,
-    heading: 'Join us',
+    heading: 'Contact us',
+    link: '/contact',
   },
   {
     id: 5,
     heading: 'About',
+    link: '/about',
   },
 ]
 
@@ -50,22 +55,27 @@ export const Courses = [
   {
     id: 1,
     heading: 'UI/UX',
+    link: '/course',
   },
   {
     id: 2,
     heading: 'WordPress Development',
+    link: '/course',
   },
   {
     id: 3,
     heading: 'Business Strategy',
+    link: '/course',
   },
   {
     id: 4,
     heading: 'Software Development',
+    link: '/course',
   },
   {
     id: 5,
     heading: 'Business English',
+    link: '/course',
   },
 ]
 
@@ -75,11 +85,13 @@ export const Featured = [
     heading: 'SQL Certifications for Your Data Career',
     id: 1,
     image: TeacherImg,
+    link: '/course',
   },
   {
     time: '8 Dec, 2020',
     heading: 'Entry level Certifications for  Career',
     id: 2,
     image: TeacherImg,
+    link: '/course',
   },
 ]

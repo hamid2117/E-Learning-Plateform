@@ -10,7 +10,6 @@ import StarHalfIcon from '@material-ui/icons/StarHalf'
 import StarIcon from '@material-ui/icons/Star'
 import CourseDetail from './CourseDetail'
 const useStyles = makeStyles((theme) => ({
-  main: {},
   heading: {
     display: 'grid',
     gridTemplateColumns: '60% 40%',
@@ -25,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
   pointchild: {
     display: 'grid',
-    gridTemplateColumns: '5% 95%',
+    gridTemplateColumns: '33px auto',
     marginBottom: '10px',
   },
   stars: {
@@ -43,6 +42,9 @@ const useStyles = makeStyles((theme) => ({
       fontWeight: '300',
       color: 'blue',
     },
+    '@media (max-width: 600px)': {
+      width: '200px',
+    },
   },
   comments: {
     display: 'grid',
@@ -51,6 +53,9 @@ const useStyles = makeStyles((theme) => ({
     gridTemplateColumns: '17% 83%',
     width: '80%',
     marginTop: '20px',
+    '@media (max-width: 600px)': {
+      gridTemplateColumns: '30% 70%',
+    },
   },
   profile: {
     justifySelf: 'center',

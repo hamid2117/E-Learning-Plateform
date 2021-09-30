@@ -58,7 +58,6 @@ const Order = ({ userdata }) => {
         }
       })
     if (response && response.data) {
-      console.log(response.data)
       setData(response.data)
       setSdkdata(true)
     }
