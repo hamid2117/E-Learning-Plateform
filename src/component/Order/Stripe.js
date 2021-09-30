@@ -5,7 +5,7 @@ import StripeMethod from './StripeMethod'
 import { Elements } from '@stripe/react-stripe-js'
 import { loadStripe } from '@stripe/stripe-js'
 
-const Stripee = ({ config }) => {
+const Stripee = ({ config, total_amount }) => {
   const [stripeKey, setStripeKey] = useState('')
 
   useEffect(async () => {
@@ -15,11 +15,10 @@ const Stripee = ({ config }) => {
 
   return (
     <>
-      <section>
-        <h2>This is the api of </h2>
+      <section style={{ width: '100%' }}>
         {stripeKey && (
           <Elements stripe={loadStripe(stripeKey)}>
-            <StripeMethod />
+            <StripeMethod total_amount={total_amount} config={config} />
           </Elements>
         )}
       </section>

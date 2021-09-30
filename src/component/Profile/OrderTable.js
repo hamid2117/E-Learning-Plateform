@@ -6,7 +6,6 @@ import TableCell from '@material-ui/core/TableCell'
 import TableContainer from '@material-ui/core/TableContainer'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
-import DoneIcon from '@material-ui/icons/Done'
 import Paper from '@material-ui/core/Paper'
 import InfoIcon from '@material-ui/icons/Info'
 import { IconButton } from '@material-ui/core'
@@ -103,7 +102,21 @@ export default function CustomizedTables({ data }) {
                   </StyledTableCell>
                 )}
                 <StyledTableCell>
-                  {matches ? (
+                  {row.paidAt ? (
+                    matches ? (
+                      <IconButton component={Link} to={`/video/${row._id}`}>
+                        <InfoIcon />
+                      </IconButton>
+                    ) : (
+                      <Button
+                        component={Link}
+                        to={`/video/${row._id}`}
+                        variant='contained'
+                      >
+                        Start Course
+                      </Button>
+                    )
+                  ) : matches ? (
                     <IconButton component={Link} to={`/order/${row._id}`}>
                       <InfoIcon />
                     </IconButton>

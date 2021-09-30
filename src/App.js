@@ -73,7 +73,7 @@ const App = () => {
             <Route exact path='/dashboard'>
               <UserDashboard />
             </Route>
-            <Route exact path='/video'>
+            <Route exact path='/video/:id'>
               <Video />
             </Route>
             <Route exact path='/order/:id'>

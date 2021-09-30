@@ -274,7 +274,7 @@ const Order = () => {
                     marginBottom: '25px',
                   }}
                 >
-                  <Stripe config={config} />
+                  <Stripe config={config} total_amount={total_amount} />
                 </ListItem>
               )}
             </div>

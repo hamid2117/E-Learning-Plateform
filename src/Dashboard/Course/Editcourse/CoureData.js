@@ -57,7 +57,7 @@ const CourseData = () => {
                     <>
                       <div key={index} className={classes.grid}>
                         <TextField
-                          id={_id}
+                          id={_id || index}
                           required
                           label='Course video title '
                           variant='standard'
@@ -67,7 +67,7 @@ const CourseData = () => {
                           onChange={(e) => handleChangeVideo(e, courseId)}
                         />
                         <TextField
-                          id={_id}
+                          id={_id || index}
                           required
                           label='Video Timing'
                           variant='standard'
@@ -77,7 +77,7 @@ const CourseData = () => {
                           onChange={(e) => handleChangeVideo(e, courseId)}
                         />
                         <TextField
-                          id={_id}
+                          id={_id || index}
                           required
                           label='Video Link'
                           variant='standard'
@@ -87,7 +87,9 @@ const CourseData = () => {
                           onChange={(e) => handleChangeVideo(e, courseId)}
                         />
                         <div>
-                          <IconButton onClick={() => Delete_Video(_id)}>
+                          <IconButton
+                            onClick={() => Delete_Video(_id || index)}
+                          >
                             <DeleteForeverIcon />
                           </IconButton>
                         </div>

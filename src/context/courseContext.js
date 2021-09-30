@@ -148,6 +148,9 @@ export const UpdateProvider = ({ children }) => {
     const name = e.target.name
     const value = e.target.value
     const id = e.target.id
+    console.log(name, value, id)
+    console.log('sdfasdfasdf')
+    console.log(courseId)
     dispatch({
       type: 'HANDLEVIDEOCHANGE',
       dispatch: { name, value, id, courseId },
