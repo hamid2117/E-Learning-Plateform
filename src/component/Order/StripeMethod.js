@@ -23,7 +23,7 @@ const CheckoutForm = ({ total_amount, config }) => {
     }
     const { data } = await axios.post(
       `${Apis}payment/process`,
-      { total_amount: total_amount },
+      { total_amount: total_amount + 5 },
       config
     )
     setClientSecret(data.clientSecret)
@@ -57,7 +57,7 @@ const CheckoutForm = ({ total_amount, config }) => {
         color='primary'
         disabled={!stripe || !elements}
       >
-        Pay {'   '} {total_amount}
+        Pay {'   '} {total_amount + 5} rs
       </Button>
     </form>
   )

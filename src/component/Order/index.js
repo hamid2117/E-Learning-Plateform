@@ -252,7 +252,7 @@ const Order = () => {
               </ListItem>
               <Divider className={classes.dividerr} />
               <ListItem style={{ width: '80%', marginLeft: '15px' }}>
-                <ListItemText primary={'Shipping fee : '} />
+                <ListItemText primary={'Tax fee : '} />
                 <Typography variant='body2'>5</Typography>
               </ListItem>
               <Divider className={classes.dividerr} />
