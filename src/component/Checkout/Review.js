@@ -11,6 +11,7 @@ import CreditCardIcon from '@material-ui/icons/CreditCard'
 import { useAuthContext } from './../../context/AuthContext'
 import axios from 'axios'
 import { useCartContext } from './../../context/cart_context'
+import { Apis } from '../../Api'
 const products = [
   { name: 'Product 1', desc: 'A nice thing', price: '$9.99' },
   { name: 'Product 2', desc: 'Another thing', price: '$3.45' },
@@ -61,7 +62,7 @@ export default function Review({ handleNext, activeStep, steps, handleBack }) {
       },
     }
     const response = await axios
-      .post('http://localhost:5000/api/v1/orders', state, config)
+      .post(`${Apis}orders`, state, config)
       .catch((e) => {
         if (e && e.response) {
           if (e.response.status === 404) {
