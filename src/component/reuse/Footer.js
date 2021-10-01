@@ -254,11 +254,10 @@ const Footer = () => {
               const { heading, id, image, time, link } = data
               return (
                 <div key={id}>
-                  <div className={classes.featuredchild}>
+                  <Link to={link} className={classes.featuredchild}>
                     <img src={image} alt='Image' />
                     <div className={classes.heading}>
-                      <Link
-                        to={link}
+                      <div
                         style={{
                           display: 'grid',
                           gridTemplateColumns: '15% 85%',
@@ -278,10 +277,10 @@ const Footer = () => {
                         >
                           {time}
                         </p>
-                      </Link>
+                      </div>
                       <h5>{heading}</h5>
                     </div>
-                  </div>
+                  </Link>
                 </div>
               )
             })}

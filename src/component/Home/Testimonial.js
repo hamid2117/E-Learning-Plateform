@@ -8,6 +8,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import SwiperCore, { Navigation } from 'swiper/core'
 import 'swiper/swiper.min.css'
 import 'swiper/components/pagination/pagination.min.css'
+import { review } from '../../DummyData'
 SwiperCore.use([Navigation])
 
 const useStyles = makeStyles((theme) => ({
@@ -174,7 +175,7 @@ const HomePage = () => {
               },
             }}
           >
-            {[1, 2, 3, 4].map((data, index) => {
+            {review.map((data, index) => {
               return (
                 <>
                   <SwiperSlide
@@ -182,7 +183,7 @@ const HomePage = () => {
                     key={index}
                     virtualIndex={index}
                   >
-                    <Card />
+                    <Card {...data} />
                   </SwiperSlide>
                 </>
               )

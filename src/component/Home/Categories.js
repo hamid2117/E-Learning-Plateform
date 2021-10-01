@@ -6,6 +6,7 @@ import PrevIcon from '@material-ui/icons/ChevronLeft'
 import NextIcon from '@material-ui/icons/ChevronRight'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import SwiperCore, { Navigation } from 'swiper/core'
+import { Link } from 'react-router-dom'
 import 'swiper/swiper.min.css'
 import 'swiper/components/pagination/pagination.min.css'
 SwiperCore.use([Navigation])
@@ -15,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     margin: '0px auto',
     maxWidth: '1200px',
-    height: '700px',
+    height: '750px',
     marginTop: '50px',
     paddingTop: '100px',
     position: 'relative',
@@ -194,7 +195,12 @@ const HomePage = () => {
           </Swiper>
         </div>
         <div className={classes.btnn}>
-          <Button variant='contained' className={classes.btn}>
+          <Button
+            component={Link}
+            to='/course'
+            variant='contained'
+            className={classes.btn}
+          >
             View all Courses
           </Button>
         </div>

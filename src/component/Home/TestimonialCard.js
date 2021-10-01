@@ -90,7 +90,7 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: '0 9px 26px rgba(58 , 87 , 135 , 0.1)',
   },
 }))
-const Features = () => {
+const Features = ({ name, work, review }) => {
   const classes = useStyles()
 
   return (
@@ -123,16 +123,11 @@ const Features = () => {
                 color: '#5f70e6',
               }}
             >
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-              Mollitia, reiciendis, aperiam soluta at eos quaerat earum
-              voluptatem dolores cupiditate velit aliquid voluptas quo alias
-              accusantium.
+              {review}
             </p>
             <a href='/#' className={classes.links}></a>
-            <h4 style={{ color: '#4556cc', fontSize: '30px' }}> Hamid </h4>
-            <h5 style={{ color: '#3e4db6', fontSize: '15px' }}>
-              Website Developer
-            </h5>
+            <h4 style={{ color: '#4556cc', fontSize: '30px' }}>{name}</h4>
+            <h5 style={{ color: '#3e4db6', fontSize: '15px' }}>{work}</h5>
           </div>
 
           <div className={classes.secondcomma}>

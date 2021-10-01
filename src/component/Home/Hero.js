@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Button } from '@material-ui/core'
 import Teacher from '../../img/men.png'
 import { useUiContext } from '../../context/Uicontext'
-
+import { Link } from 'react-router-dom'
 const useStyles = makeStyles((theme) => ({
   main: {
     height: '600px',
@@ -80,6 +80,8 @@ const HomePage = () => {
             </div>
             <div>
               <Button
+                component={Link}
+                to='/about'
                 variant='contained'
                 color='primary'
                 className={classes.btn}

@@ -4,11 +4,11 @@ import { Button } from '@material-ui/core'
 import Check from '../../img/check.png'
 import ShareIcon from '@material-ui/icons/Share'
 import Stars from '../Home/Explore/Stars'
-import Teacherimg from '../../img/teacher.jpg'
 import StarOutlineIcon from '@material-ui/icons/StarOutline'
 import StarHalfIcon from '@material-ui/icons/StarHalf'
 import StarIcon from '@material-ui/icons/Star'
 import CourseDetail from './CourseDetail'
+import { toast } from 'react-toastify'
 const useStyles = makeStyles((theme) => ({
   heading: {
     display: 'grid',
@@ -89,7 +89,6 @@ const HomePage = ({
   learn,
   courseData,
 }) => {
-  console.log(image)
   const classes = useStyles()
   const temStar = Array.from({ length: 5 }, (_, index) => {
     const number = index + 0.5
@@ -105,6 +104,11 @@ const HomePage = ({
       </span>
     )
   })
+  const Copy = () => {
+    var Url = window.location.href
+    navigator.clipboard.writeText(Url)
+    toast.success('Course link is copied .')
+  }
   return (
     <>
       <section className={classes.main}>
@@ -115,6 +119,7 @@ const HomePage = ({
               <Button
                 variant='contained'
                 color='secondary'
+                onClick={Copy}
                 className={classes.button}
                 startIcon={<ShareIcon />}
               >

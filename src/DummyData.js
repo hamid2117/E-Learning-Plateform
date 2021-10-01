@@ -99,3 +99,48 @@ export const rows = [
     createdAt: '12-6-2021',
   },
 ]
+
+export const review = [
+  {
+    id: '12413',
+    name: 'Ali Sattar',
+    work: 'Android developer',
+    review:
+      'This is one of the good websites where a person can learn from any domain and any field at a very affordable costs..... This is useful and beneficial for the both tutors and the students who are learning from it... Thanks Zilom...',
+  },
+  {
+    id: '12413',
+    name: 'Ayan Khalil',
+    work: 'Blockchain developer',
+    review:
+      'I come across this learning platform This course is good for the whom are entering in the finance, Perfect skill trainer they have and make this course perfect. I will highly recommend for the those who are entering in finance.',
+  },
+  {
+    id: '3232',
+    name: 'Yousef ',
+    work: 'Bio Technolgy',
+    review:
+      "Many of my coworkers choose to use Udemy for continuing education. I feel it has the best selection, training and curriculum vs others I have tried. Yes, the courses may be longer than others, but they're more detailed.",
+  },
+  {
+    id: '11213',
+    name: 'Dani Nawaz',
+    work: 'Full stack developer',
+    review:
+      "Utilized a trial account, forgot to cancel and didn't use services. Was refused a refund. Contacted support and got a copy paste answer. Have used Zilom a lot in the past but won't anymore unless they get some common sense.",
+  },
+  {
+    id: '122313',
+    name: 'Muneeb Shah',
+    work: 'Data scientist',
+    review:
+      'This is one of the good websites where a person can learn from any domain and any field at a very affordable costs..... This is useful and beneficial for the both tutors and the students who are learning from it... Thanks Zilom...',
+  },
+  {
+    id: '1245443',
+    name: 'Ahmed Mehmood',
+    work: 'Investor',
+    review:
+      'I come across this learning platform This course is good for the whom are entering in the finance, Perfect skill trainer they have and make this course perfect. I will highly recommend for the those who are entering in finance.',
+  },
+]
