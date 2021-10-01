@@ -13,52 +13,52 @@ import { Apis } from '../Api'
 const DashboardContext = createContext()
 
 const initialState = {
-  heading: '',
-  category: '',
-  language: '',
+  heading: 'loading ...',
+  category: 'loading ...',
+  language: 'loading ...',
   level: 'Beginner',
-  duration: '',
-  lessons: '',
-  price: '',
-  maxStudent: '',
-  description: '',
-  image: '',
+  duration: 'loading ...',
+  lessons: 'loading ...',
+  price: 'loading ...',
+  maxStudent: 'loading ...',
+  description: 'loading ...',
+  image: 'loading ...',
   learn: [
     {
-      _id: '',
-      point: '',
+      _id: 'loading ...',
+      point: 'loading ...',
     },
   ],
   requirement: [
     {
-      _id: '',
-      point: '',
+      _id: 'loading ...',
+      point: 'loading ...',
     },
   ],
   target: [
     {
-      _id: '',
-      point: '',
+      _id: 'loading ...',
+      point: 'loading ...',
     },
   ],
   courseData: [
     {
-      _id: '',
-      heading: '',
+      _id: 'loading ...',
+      heading: 'loading ...',
       video: [
         {
-          _id: '',
-          heading: '',
-          time: '',
-          link: '',
+          _id: 'loading ...',
+          heading: 'loading ...',
+          time: 'loading ...',
+          link: 'loading ...',
         },
       ],
     },
   ],
   material: [
     {
-      _id: '',
-      heading: '',
+      _id: 'loading ...',
+      heading: 'loading ...',
     },
   ],
 }
@@ -188,9 +188,6 @@ export const UpdateProvider = ({ children }) => {
       toast.error('system problem occured')
     }
   }
-  // useEffect(() => {
-  //   dispatch({ type: 'TOTAL_COUNT' })
-  // }, [state.itemCart])
 
   return (
     <DashboardContext.Provider

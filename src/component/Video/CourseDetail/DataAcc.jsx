@@ -6,11 +6,9 @@ import { Paper ,Divider } from '@material-ui/core'
 import AddIcon from '@material-ui/icons/Add'
 import RemoveIcon from '@material-ui/icons/Remove'
 import { useClickOutside } from 'react-click-outside-hook'
-import YouTubeIcon from '@material-ui/icons/YouTube';
 import { IconButton } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
-
   accordianItem: {
     marginBottom: '20px',
     padding: '10px',
@@ -128,7 +126,7 @@ const DataAcc = ({heading,video ,updateLink}) => {
                     transition={containerTransition}
                     className={classes.answer}
                   >
-                      {video.map((data)=>{
+                   {video.map((data)=>{
                         const {id,heading,time,link} =data
                           return(
                               <div className={classes.grid} onClick={()=>updateLink(link)}  >
@@ -137,10 +135,10 @@ const DataAcc = ({heading,video ,updateLink}) => {
                               <Divider style={{gridColumn:"1/span 2"}} />
                               </div>
                           )
-                      })}
-                  </motion.div>
-                </Paper>
-              </div>
+                   })}
+             </motion.div>
+        </Paper>
+     </div>
   </>
  )
 }

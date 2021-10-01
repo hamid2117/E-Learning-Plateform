@@ -34,7 +34,16 @@ const useStyles = makeStyles((theme) => ({
 
 const Accordian = ({ courseData, updateLink }) => {
   const classes = useStyles()
-
+  const { lessons } = courseData.reduce(
+    (total, data) => {
+      const number = data.video.length
+      total.lessons += number
+      return total
+    },
+    {
+      lessons: 0,
+    }
+  )
   return (
     <>
       <section className={classes.main}>
@@ -42,7 +51,7 @@ const Accordian = ({ courseData, updateLink }) => {
           <h4>Topics for this course</h4>
           <div>
             <p>
-              12 Lessons <span>30h</span>{' '}
+              {courseData.length} chapters <span>{lessons} Videos</span>
             </p>
           </div>
         </div>

@@ -27,12 +27,17 @@ const useStyles = makeStyles((theme) => ({
       fontWeight: 'bold',
     },
   },
+  loading: {
+    height: '100%',
+    display: 'grid',
+    placeItems: 'center',
+  },
 }))
 
 const Order = ({ userdata }) => {
   const [data, setData] = useState({})
   const [error, setError] = useState(false)
-
+  const [loading, setLoading] = useState(false)
   const classes = useStyles()
   const [sdkdata, setSdkdata] = useState(false)
   const matches = useMediaQuery('(max-width:500px)')
@@ -44,22 +49,22 @@ const Order = ({ userdata }) => {
     },
   }
   const getData = async () => {
-    const response = await axios
-      .get(`${Apis}myorders`, config)
-
-      .catch((e) => {
-        if (e && e.response) {
-          if (e.response.status === 404) {
-            setError(true)
-          }
-          if (e.response.status === 204) {
-            setError(true)
-          }
+    setLoading(true)
+    const response = await axios.get(`${Apis}myorders`, config).catch((e) => {
+      if (e && e.response) {
+        if (e.response.status === 404) {
+          setError(true)
         }
-      })
+        if (e.response.status === 204) {
+          setError(true)
+        }
+        setLoading(false)
+      }
+    })
     if (response && response.data) {
       setData(response.data)
       setSdkdata(true)
+      setLoading(false)
     }
   }
   useEffect(() => {
@@ -73,11 +78,18 @@ const Order = ({ userdata }) => {
           Once you buy an Course with us, you'll be able to track its status
           here.
         </p>
-
-        {data.length === 0 ? (
-          <h5>There is no Course to show </h5>
+        {loading ? (
+          <section className={classes.loading}>
+            <div class='lds-hourglass'></div>
+          </section>
         ) : (
-          data && sdkdata && <OrderTable data={data} />
+          <div>
+            {data.length === 0 ? (
+              <h5>There is no Course to show </h5>
+            ) : (
+              data && sdkdata && <OrderTable data={data} />
+            )}
+          </div>
         )}
       </div>
     </>

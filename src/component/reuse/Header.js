@@ -43,6 +43,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
   },
 }))
+
 const Header = () => {
   const classes = useStyles()
   const location = useLocation()
@@ -73,7 +74,7 @@ const Header = () => {
                 <img style={{ width: '40px' }} src={Phone} alt='phone' />
               </div>
               <div>
-                <h6>Call agent</h6>
+                <h6>Call argent</h6>
                 <p>666 888 222</p>
               </div>
             </div>
@@ -86,8 +87,8 @@ const Header = () => {
                 <img style={{ width: '40px' }} src={Emailimg} alt='phone' />
               </div>
               <div>
-                <h6>Call agent</h6>
-                <p>666 888 222</p>
+                <h6>Mail argent</h6>
+                <p>zilom@email.com</p>
               </div>
             </div>
           </>

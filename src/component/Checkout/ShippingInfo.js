@@ -31,24 +31,6 @@ export default function AddressForm({
   const { email, address } = userdata
   const onSubmit = async (value) => {
     shipAddress(value)
-    // const response = await axios
-    //   .put('http://localhost:5000/api/v1/profile', data, config)
-    //   .catch((e) => {
-    //     if (e && e.response) {
-    //       if (e.response.status === 404) {
-    //         setError(true)
-    //       }
-    //     }
-    //   })
-    // if (response && response.data) {
-    //   updateData(response.data)
-    //   if (response.status === 200) {
-    //     setSuccess(true)
-    //   }
-    //   if (response.status === 404) {
-    //     setError(true)
-    //   }
-    // }
   }
   const { email: semail, address: saddress } = shippingAddress
   const formik = useFormik({

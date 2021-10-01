@@ -74,7 +74,7 @@ const cart_reducer = (state, action) => {
     case UPDATE_ADDRESS:
       return { ...state, shippingAddress: action.payload }
     case SEND:
-      return { ...state, done: action.payload }
+      return { ...state, done: action.payload, total_items: 0, cart: [] }
     default:
       throw new Error(`No Matching "${action.type}" - action type`)
   }

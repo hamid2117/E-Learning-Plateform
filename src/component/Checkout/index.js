@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const steps = ['Billing Detail', 'Payment details', 'Review your order']
+const steps = ['Billing Detail', 'Review your order', 'Payment details']
 
 export default function Checkout() {
   const { userdata } = useAuthContext()
@@ -84,7 +84,7 @@ export default function Checkout() {
         )
       case 1:
         return (
-          <PaymentForm
+          <Review
             handleNext={handleNext}
             handleBack={handleBack}
             activeStep={activeStep}
@@ -93,7 +93,7 @@ export default function Checkout() {
         )
       case 2:
         return (
-          <Review
+          <PaymentForm
             handleNext={handleNext}
             handleBack={handleBack}
             activeStep={activeStep}
