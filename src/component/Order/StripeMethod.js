@@ -1,23 +1,22 @@
 import React, { useState } from 'react'
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
 import { Button } from '@material-ui/core'
-import { useAuthContext } from '../../context/AuthContext'
 import axios from 'axios'
 import { Apis } from '../../Api'
 import { toast } from 'react-toastify'
 import { useParams, Redirect } from 'react-router-dom'
 
-const CheckoutForm = ({ total_amount, config }) => {
+const CheckoutForm = ({ total_amount, config, idd }) => {
   const [clientSecret, setClientSecret] = useState('')
   const [redirect, setRedirect] = useState(false)
   const { id } = useParams()
+  const [loading, setLoading] = useState(false)
   const stripe = useStripe()
   const elements = useElements()
-  const { userdata } = useAuthContext()
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-
+    setLoading(true)
     if (elements == null) {
       return
     }
@@ -37,10 +36,14 @@ const CheckoutForm = ({ total_amount, config }) => {
     )
     if (error) {
       toast.error('Payment is not done .')
+      setLoading(false)
     } else {
-      await axios.put(`${Apis}order/${id}/pay`)
+      console.log('adfasdf')
+      console.log(idd)
+      await axios.put(`${Apis}order/${id || idd}/pay`)
       setRedirect(true)
       toast.success('Payment is done .')
+      setLoading(true)
     }
   }
   if (redirect) {
@@ -57,7 +60,7 @@ const CheckoutForm = ({ total_amount, config }) => {
         color='primary'
         disabled={!stripe || !elements}
       >
-        Pay {'   '} {total_amount + 5} rs
+        {loading ? 'loading ...' : `Pay ${'   '} ${total_amount + 5} rs`}
       </Button>
     </form>
   )

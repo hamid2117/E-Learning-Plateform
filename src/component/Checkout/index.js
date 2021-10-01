@@ -17,7 +17,7 @@ import { useCartContext } from './../../context/cart_context'
 const useStyles = makeStyles((theme) => ({
   layout: {
     width: 'auto',
-    height: '680px',
+    height: '100%',
     marginLeft: theme.spacing(2),
     marginRight: theme.spacing(2),
     [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
@@ -62,7 +62,12 @@ export default function Checkout() {
       history.push('/account')
     }
   }, [userdata, userdata.email])
-
+  const { token } = userdata
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
   const handleNext = () => {
     setActiveStep(activeStep + 1)
   }
@@ -98,6 +103,7 @@ export default function Checkout() {
             handleBack={handleBack}
             activeStep={activeStep}
             steps={steps}
+            config={config}
           />
         )
       default:
