@@ -289,7 +289,7 @@ const Footer = () => {
         <Divider className={classes.lastDivider} />
         <section className={classes.main4}>
           <h5 className={classes.copyright}>
-            © Copyright 2021 by Gaviasthemes
+            © Develop by Hamid 2021
           </h5>
           <div className={classes.social}>
             {social.map((data) => {
