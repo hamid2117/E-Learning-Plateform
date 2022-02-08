@@ -221,7 +221,7 @@ const BasketPage = () => {
                 marginTop: '15px',
               }}
             >
-              Order Total : <span>{total_amount + shipping_fee}rs</span>
+              Order Total : <span>{total_amount + shipping_fee}$</span>
             </h4>
           </article>
           {userdata.email ? (

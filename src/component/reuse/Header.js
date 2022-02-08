@@ -88,7 +88,7 @@ const Header = () => {
               </div>
               <div>
                 <h6>Mail argent</h6>
-                <p>zilom@email.com</p>
+                <p>hamid@email.com</p>
               </div>
             </div>
           </>
