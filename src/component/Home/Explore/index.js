@@ -7,8 +7,9 @@ import { useFilterContext } from '../../../context/FilterContext'
 const useStyles = makeStyles((theme) => ({
   main: {
     width: '100%',
-    height: '800px',
+    // height: '800px',
     margin: '0px auto',
+    marginBottom: '3rem',
     maxWidth: '1200px',
     '@media (max-width: 768px)': {
       maxWidth: '95%',
@@ -77,7 +78,7 @@ const HomePage = () => {
           updateFilter={updateFilter}
         />
         <div className={classes.grid}>
-          {fourCard.length > 1 ? (
+          {fourCard.length < 1 ? (
             <>
               <div className={classes.empty}>
                 <div class='lds-ring'>

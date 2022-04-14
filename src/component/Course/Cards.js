@@ -32,17 +32,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   img: {
-    width: '270px',
     borderRadius: '20px 20px 0px 0px',
-    '@media (max-width: 768px)': {
-      width: '276px',
-    },
-    '@media (max-width: 500px)': {
-      width: '323px',
-    },
-    '@media (max-width: 380px)': {
-      width: '285px',
-    },
+    width: '100%',
   },
   profile: {
     borderRadius: '50%',
