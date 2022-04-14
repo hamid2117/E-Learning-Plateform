@@ -51,6 +51,12 @@ const useStyles = makeStyles((theme) => ({
       gridTemplateColumns: '1fr',
     },
   },
+  empty: {
+    display: 'grid',
+    placeItems: 'center',
+    gridColumn: '1/5',
+    height: '600px',
+  },
 }))
 const HomePage = () => {
   const { filterdCard, filter, Level, category, updateFilter } =
@@ -71,13 +77,15 @@ const HomePage = () => {
           updateFilter={updateFilter}
         />
         <div className={classes.grid}>
-          {fourCard.length < 1 ? (
+          {fourCard.length > 1 ? (
             <>
               <div className={classes.empty}>
-                <h3>
-                  {' '}
-                  empty <br /> <br /> No courses to show .{' '}
-                </h3>
+                <div class='lds-ring'>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
               </div>
             </>
           ) : (
