@@ -4,7 +4,7 @@ import { Button, Paper } from '@material-ui/core'
 import { heroCard } from '../../DummyData'
 import About from '../../img/about.jpg'
 import Check from '../../img/check.png'
-
+import {Link} from "react-router-dom"
 const useStyles = makeStyles((theme) => ({
   main: {
     width: '100%',
@@ -96,7 +96,8 @@ const HomePage = () => {
             </div>
           </div>
           <div>
-            <Button variant='contained' color='primary' className={classes.btn}>
+            <Button variant='contained' color='primary' component={Link}
+                to='/course' className={classes.btn}>
               View all Courses
             </Button>
           </div>
